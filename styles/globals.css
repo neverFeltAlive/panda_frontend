@@ -1,26 +1,312 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+:root {
+    --main-color: rgba(252, 241, 86, 1);
+    --main-color-transparent: rgba(252, 241, 86, 0.2);
+
+    --light-color: rgba(255, 255, 231, 1);
+    --light-color-transparent: rgba(255, 255, 231, 0.2);
+
+    --dark-color: rgba(30, 30, 36, 1);
+    --dark-color-transparent: rgba(30, 30, 36, 0.2);
+
+    --white-color: rgba(255, 255, 255, 1);
+    --white-color-transparent: rgba(255, 255, 255, 0.7);
+
+    --accent-color: rgba(62, 230, 70, 1);
+    --accent-color-transparent: rgba(62, 230, 70, 0.2);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/*<editor-fold desc="Generic">*/
+html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    font-size: 16px;
+
+    color: var(--dark-color);
+    font-family: 'Oswald', sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 700;
 }
+
+p {
+    margin: 0;
+    font-weight: 400;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Font Size">*/
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.8rem;
+}
+
+h5 {
+    font-size: 1.5rem;
+}
+
+h6 {
+    font-size: 1.3rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+strong {
+    font-size: 0.9rem;
+}
+
+/*</editor-fold>*/
+
+.content-section {
+    background-color: var(--white-color);
+    padding: 50px 10px;
+}
+
+.content-section__light {
+    background-color: var(--light-color);
+}
+
+.content-section__dark {
+    background-color: var(--main-color);
+}
+
+.content-container {
+    width: 100%;
+    margin: auto;
+}
+
+.section-title {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.tabs-container {
+    background-color: transparent;
+}
+
+.subtitle {
+    color: var(--main-color);
+    text-shadow: 1px 1px #40322F;
+}
+
+.highlight {
+    color: var(--accent-color);
+    text-shadow: 1px 1px var(--dark-color);
+    font-family: 'Rubik Bubbles', cursive;
+    letter-spacing: 4px;
+    font-size: inherit;
+}
+
+.highlight__light {
+    color: var(--light-color)
+}
+
+/*<editor-fold desc="Link">*/
+.nav-link {
+    padding: 0;
+    margin: 10px 0;
+    font-weight: 400;
+    border-bottom: 0.15rem solid transparent;
+}
+
+.nav-link:hover {
+    cursor: pointer;
+    color: var(--accent-color);
+}
+
+.nav-link__active {
+    border-bottom: 0.15rem solid var(--dark-color);
+}
+
+.nav-link__active:hover {
+    border-bottom: 0.15rem solid var(--accent-color);
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Button">*/
+.button {
+    font-size: inherit;
+    padding: 0.5rem;
+    font-family: inherit;
+    color: var(--dark-color);
+    background-color: transparent;
+    border: 0.15rem solid var(--dark-color);
+    border-radius: 0.5rem;
+    font-weight: 700;
+}
+
+.button:hover {
+    color: var(--main-color);
+    background-color: transparent;
+    border-color: var(--main-color);
+    cursor: pointer;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.button__light:hover{
+    border: 0.15rem solid var(--light-color);
+    color: var(--light-color);
+}
+
+.button__accent:hover{
+    border: 0.15rem solid var(--accent-color);
+    color: var(--accent-color);
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Input">*/
+.input[type="text"],
+.input[type="email"],
+.input[type="tel"],
+.input[type="textarea"]{
+    width: 100%;
+    font-family: inherit;
+    padding: 10px;
+    background-color: transparent;
+    border: 0.15rem solid var(--dark-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    margin: 5px 0 15px 0;
+    box-shadow: 0 0 0.15rem var(--dark-color);
+}
+
+.input[type="text"]:focus,
+.input[type="email"]:focus,
+.input[type="tel"]:focus,
+.input[type="textarea"]:focus {
+    border: 0.15rem solid var(--main-color);
+    outline: none;
+    box-shadow: 0 0 0.15rem var(--main-color);
+}
+
+.input[type="text"]::placeholder,
+.input[type="email"]::placeholder,
+.input[type="tel"]::placeholder,
+.input[type="textarea"]::placeholder {
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+.input[type="text"]:focus::placeholder,
+.input[type="email"]:focus::placeholder,
+.input[type="tel"]:focus::placeholder,
+.input[type="textarea"]:focus::placeholder {
+    opacity: 0;
+}
+
+.input[type="checkbox"] {
+    appearance: none;
+    background-color: transparent;
+    font: inherit;
+    color: var(--dark-color);
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 0.15rem solid var(--dark-color);
+    border-radius: 0.15em;
+    transform: translateY(0.125rem);
+    margin: 0 0.5rem 0 1rem;
+}
+
+.input[type="checkbox"]:checked {
+    background-color: var(--main-color);
+    outline: none;
+}
+
+select.input{
+    appearance: none;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: transparent;
+    text-transform: uppercase;
+    padding: 10px;
+    border: 0.15rem solid var(--dark-color);
+    border-radius: 0.5rem;
+    width: 50%;
+}
+
+select.input option{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Media">*/
+@media (min-width: 768px) {
+    html, body {
+        font-size: 18px;
+    }
+
+    .content-section {
+        padding: 80px 20px
+    }
+}
+
+@media (min-width: 992px) {
+    html, body {
+        font-size: 19px;
+    }
+
+    .content-container {
+        width: 80%
+    }
+
+    .nav-link{
+        margin: 10px 40px;
+    }
+}
+
+@media (min-width: 1200px) {
+    html, body {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1400px) {
+    html, body {
+        font-size: 21px;
+    }
+}
+
+@media (min-width: 1800px) {
+    html, body {
+        font-size: 23px;
+    }
+}
+
+@media (min-width: 2200px) {
+    html, body {
+        font-size: 25px;
+    }
+}
+
+/*</editor-fold>*/
