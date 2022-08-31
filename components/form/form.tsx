@@ -79,10 +79,13 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText}): JSX.Element => {
         }
 
         if (checkErrors && checkValues){
+            console.log(apiEndpoint);
+
             fetch(apiEndpoint, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({...values})
             }).then(response => console.log(response.json()));
