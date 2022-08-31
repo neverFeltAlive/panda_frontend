@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import {Hr} from "../UI";
 import Form, {InputProps, SelectProps} from "./form";
 import {Simulate} from "react-dom/test-utils";
+import {ApiRoot} from "../../constants";
 
 const items: (InputProps | SelectProps)[] = [
     {
@@ -63,7 +64,7 @@ const ApplicationForm: FC = () => {
         <section>
             <h5 className="section-title" style={{textAlign: "center"}}>Оставить заявку</h5>
             <Hr/>
-            <Form items={items} buttonText="Отправить"/>
+            <Form apiEndpoint={`${ApiRoot}/create-application`} items={items} buttonText="Отправить"/>
         </section>
     );
 }

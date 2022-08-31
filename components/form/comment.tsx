@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import {Hr} from "../UI";
 import Form, {InputProps} from "./form";
+import {ApiRoot} from "../../constants";
 
 const items: InputProps[] = [
     {
@@ -27,7 +28,7 @@ const CommentForm: FC = () => {
         <section>
             <h5 className="section-title" style={{textAlign: "center"}}>Оставить комментарий</h5>
             <Hr/>
-            <Form items={items} buttonText="Отправить"/>
+            <Form apiEndpoint={`${ApiRoot}/create-comment`} items={items} buttonText="Отправить"/>
         </section>
     );
 }

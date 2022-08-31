@@ -46,11 +46,12 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 interface FormProps {
     items: (InputProps | SelectProps)[],
     buttonText: string,
+    apiEndpoint: string
 }
 
 type State = { [key: string]: string };
 
-const Form: FC<FormProps> = ({items, buttonText}): JSX.Element => {
+const Form: FC<FormProps> = ({apiEndpoint, items, buttonText}): JSX.Element => {
     const defaultValues: State = {};
 
     useEffect(() => {
@@ -78,12 +79,12 @@ const Form: FC<FormProps> = ({items, buttonText}): JSX.Element => {
         }
 
         if (checkErrors && checkValues){
-            fetch('http://localhost:8000/api/create-application', {
+            fetch(apiEndpoint, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({values})
+                body: JSON.stringify({...values})
             }).then(response => console.log(response.json()));
         }
     }

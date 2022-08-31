@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import {Hr} from "../UI";
 import Form, {InputProps} from "./form";
 import styled from "styled-components";
+import {ApiRoot} from "../../constants";
 
 const items: InputProps[] = [
     {
@@ -58,7 +59,7 @@ const Appointment : FC = () => {
                 <Hr/>
 
                 <Container>
-                    <Form items={items} buttonText="Отправить"/>
+                    <Form apiEndpoint={`${ApiRoot}/create-question`} items={items} buttonText="Отправить"/>
                 </Container>
             </div>
         </section>

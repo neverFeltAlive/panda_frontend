@@ -19,4 +19,6 @@ export const Colors = {
         normal: "rgba(30, 30, 36, 1)",
         transparent: "rgba(30, 30, 36, 0.2)"
     }
-}
+};
+
+export const ApiRoot = "http://localhost:8000/api";
