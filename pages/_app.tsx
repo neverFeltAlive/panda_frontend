@@ -13,6 +13,7 @@ export default function MyApp({Component, pageProps}: AppProps) {
     const [modalContent, setModalContent] = useState<null | FC>(null)
 
     const router = useRouter();
+    const needHeader = router.pathname === "/about" || router.pathname === "/details" || router.pathname === "/about";
 
     const setModal = (content: FC) => {
         setModalContent(content);
@@ -34,11 +35,11 @@ export default function MyApp({Component, pageProps}: AppProps) {
             </Head>
             <Background/>
             <Modal isVisible={isModalVisible} setVisible={setIsModalVisible} content={modalContent}/>
-            {router.pathname !== "/" && (
+            {needHeader && (
                 <Header setModal={setModal}/>
             )}
             <Component {...pageProps} setModal={setModal}/>
-            {router.pathname !== "/" && (
+            {needHeader && (
                 <Footer setModal={setModal}/>
             )}
         </>
