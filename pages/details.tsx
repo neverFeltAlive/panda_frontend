@@ -6,6 +6,7 @@ import Appointment from "../components/form/appointment";
 import MapBox from "../components/map";
 import {ParentsInfo} from "../components/info";
 import Carousel, {ImageData} from "../components/carousel/carousel";
+import {ApiRoot} from "../constants";
 
 interface DetailsPageProps extends PageProps{
     images: ImageData[],
@@ -29,7 +30,7 @@ const Details: NextPage<DetailsPageProps> = ({setModal, images}) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) =>{
-    const data = await fetch("http://localhost:8000/api/get-pictures");
+    const data = await fetch(`${ApiRoot}/get-pictures`);
     const images: ImageData[] = await data.json();
     return {
         props: {
