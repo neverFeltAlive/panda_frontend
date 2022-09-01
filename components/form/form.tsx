@@ -79,16 +79,19 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText}): JSX.Element => {
         }
 
         if (checkErrors && checkValues){
-            console.log(apiEndpoint);
-
-            fetch(apiEndpoint, {
-                method: "POST",
-                headers: {
-                    "Access-Control-Allow-Origin": "localhost",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({...values})
-            }).then(response => console.log(response.json()));
+            try{
+                fetch(apiEndpoint, {
+                    method: "POST",
+                    headers: {
+                        "Access-Control-Allow-Origin": "localhost",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({...values})
+                }).then(response => console.log(response.json()));
+            }
+            catch(error){
+                console.log(error);
+            }
         }
     }
 

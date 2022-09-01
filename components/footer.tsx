@@ -118,6 +118,9 @@ const Footer: FC<FooterProps> = ({setModal}) => {
                             <Link href="/contacts">
                                 <A>О нас</A>
                             </Link><br/>
+                            <Link href="/feed">
+                                <A>Галлерея</A>
+                            </Link><br/>
                         </div>
                         <div>
                             <Button onClick={() => {

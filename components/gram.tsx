@@ -98,15 +98,14 @@ const Gram: FC<GramProps> = ({images, setViewer}) => {
 
     const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        const data = await fetch(`${ApiRoot}/get-pictures?offset=${offset}&page=${currentPage}`, {
-            method: "GET",
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-            }
-        })
-        const list: ImageData[] = await data.json();
-        setActiveImages({...activeImages, ...list});
-        setCurrentPage(currentPage + 1);
+        try{
+            const data = await fetch(`${ApiRoot}/get-pictures?offset=9&page=1`);
+            console.log(data);
+        }
+        catch(error){
+            console.log(error);
+            return;
+        }
     }
 
     return (

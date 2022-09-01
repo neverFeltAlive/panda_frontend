@@ -1,18 +1,12 @@
 import React from 'react';
-import {GetServerSideProps, NextPage} from "next";
+import {NextPage} from "next";
 import Head from "next/head";
 import {PageProps} from "./about";
 import Appointment from "../components/form/appointment";
 import MapBox from "../components/map";
 import {ParentsInfo} from "../components/info";
-import Carousel, {ImageData} from "../components/carousel/carousel";
-import {ApiRoot} from "../constants";
 
-interface DetailsPageProps extends PageProps{
-    images: ImageData[],
-}
-
-const Details: NextPage<DetailsPageProps> = ({setModal, images}) => {
+const Details: NextPage<PageProps> = ({setModal}) => {
     return (
         <>
             <Head>
@@ -26,16 +20,6 @@ const Details: NextPage<DetailsPageProps> = ({setModal, images}) => {
             </main>
         </>
     )
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) =>{
-    const data = await fetch(`${ApiRoot}/get-pictures`);
-    const images: ImageData[] = await data.json();
-    return {
-        props: {
-            images
-        }
-    }
 }
 
 export default Details;

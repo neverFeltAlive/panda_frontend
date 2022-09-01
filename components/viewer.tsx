@@ -27,8 +27,11 @@ const ImgDiv = styled.div`
 `;
 
 const Img = styled.img`
-  max-height: 350px;
+  max-height: 200px;
 
+  @media (min-width: 768px){
+    max-height: 300px;
+  }
   @media (min-width: 992px){
     max-height: 500px;
   }

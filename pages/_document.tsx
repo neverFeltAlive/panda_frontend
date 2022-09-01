@@ -1,5 +1,5 @@
 import Document, {DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript} from 'next/document'
-import {ReactElement} from "react";
+import React, {ReactElement} from "react";
 
 class MyDocument extends Document {
     static async getInitialProps(
@@ -13,7 +13,17 @@ class MyDocument extends Document {
     render(): ReactElement {
         return (
             <Html lang="ru">
-                <Head/>
+                <Head>
+                    <meta charSet="UTF-8"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    <title>Частный Детский Сад Панда</title>
+                    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Rubik+Bubbles&display=swap"
+                        rel="stylesheet"/>
+                    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&display=swap" rel="stylesheet"/>
+                </Head>
 
                 <body>
                     <Main/>
