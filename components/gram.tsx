@@ -99,13 +99,17 @@ const Gram: FC<GramProps> = ({images, setViewer}) => {
     const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         try{
-            const data = await fetch(`${ApiRoot}/get-pictures?offset=9&page=1`);
+            const data = await fetch(`${ApiRoot}/get-pictures?offset=${offset + 1}&page=${currentPage}`);
             console.log(data);
+            const list: ImageData[] = await data.json();
+            setActiveImages([...activeImages, ...list]);
+            setCurrentPage(currentPage + 1);
         }
         catch(error){
             console.log(error);
             return;
         }
+
     }
 
     return (
@@ -113,7 +117,7 @@ const Gram: FC<GramProps> = ({images, setViewer}) => {
             <StyledSection className="content-section__light">
                 <Container>
                     {activeImages.map((image, index) => {
-                        if (index !== offset * currentPage) {
+                        if (index < offset * currentPage) {
                             return (
                                 <Card key={index} onClick={() => {
                                     setViewer(images, index)

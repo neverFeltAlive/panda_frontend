@@ -138,7 +138,7 @@ const Header: FC<HeaderProps> = ({setModal}) => {
                         </a>
                     </Link>
                     <Link href="/feed">
-                        <a className={router.pathname === "/feed" ? "nav-link nav-link__active" : "nav-link"}>Галлерея
+                        <a className={router.pathname === "/feed" ? "nav-link nav-link__active" : "nav-link"}>Галерея
                         </a>
                     </Link>
                 </ContentBottom>

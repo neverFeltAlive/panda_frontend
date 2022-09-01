@@ -131,7 +131,7 @@ const Footer: FC<FooterProps> = ({setModal}) => {
                             <Button onClick={() => {
                                 setModal(CommentForm)
                             }}>
-                                Оставить комментарий
+                                Оставить отзыв
                             </Button><br/>
                             <Button onClick={() => {
                                 setModal(ApplicationForm)

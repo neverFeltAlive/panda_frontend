@@ -68,7 +68,7 @@ const Div = styled.div`
   margin: 0;
   height: 100%;
   padding: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
