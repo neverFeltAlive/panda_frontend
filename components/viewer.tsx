@@ -85,7 +85,7 @@ const Viewer: FC<ViewerProps> = ({closeViewer, images, currentId}) => {
                         {images.map((image, index) => {
                             if (index === current) {
                                 return (
-                                    <ImgDiv onClick={() => {
+                                    <ImgDiv key={index} onClick={() => {
                                         closeViewer();
                                     }}>
                                         <Cross>
