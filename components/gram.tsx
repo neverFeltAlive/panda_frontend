@@ -10,14 +10,14 @@ import {setViewerType} from "../pages/_app";
 const Container = styled.div`
   display: grid;
   grid-template-columns: auto;
-  
-  @media (min-width: 768px){
+
+  @media (min-width: 768px) {
     grid-template-columns: auto auto;
   }
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     grid-template-columns: auto auto auto;
   }
-  @media (min-width: 1800px){
+  @media (min-width: 1800px) {
   }
 `;
 
@@ -27,13 +27,13 @@ const Img = styled.img`
   border-radius: ${Rems.borderRadius};
   cursor: pointer;
 
-  @media (min-width: 992px){
+  @media (min-width: 992px) {
     height: 250px;
   }
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     height: 200px;
   }
-  @media (min-width: 1800px){
+  @media (min-width: 1800px) {
     height: 300px;
   }
 `;
@@ -58,7 +58,7 @@ const H6 = styled.h6`
   width: 100%;
   z-index: 2;
 
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 `;
@@ -78,6 +78,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 //endregion
 
 interface GramProps {
@@ -113,17 +114,18 @@ const Gram: FC<GramProps> = ({images, setViewer}) => {
             <StyledSection className="content-section__light">
                 <Container>
                     {activeImages.map((image, index) => {
-                        if (index === offset * currentPage){
-                            return null;
+                        if (index !== offset * currentPage) {
+                            return (
+                                <Card key={index} onClick={() => {
+                                    setViewer(images, index)
+                                }}>
+                                    <div>
+                                        <Img src={image.image} alt={image.text}/>
+                                        <H6>{image.title}</H6>
+                                    </div>
+                                </Card>
+                            );
                         }
-                        return (
-                            <Card key={index} onClick={() => {setViewer(images, index)}}>
-                                <div>
-                                    <Img src={image.image} alt={image.text}/>
-                                    <H6>{image.title}</H6>
-                                </div>
-                            </Card>
-                        );
                     })}
                 </Container>
                 {more && (
