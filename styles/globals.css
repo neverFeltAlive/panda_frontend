@@ -13,6 +13,8 @@
 
     --accent-color: rgba(62, 230, 70, 1);
     --accent-color-transparent: rgba(62, 230, 70, 0.2);
+
+    --border-width: 0.15rem;
 }
 
 /*<editor-fold desc="Generic">*/
@@ -45,15 +47,19 @@ a {
     text-decoration: none;
 }
 
+ul, li {
+    font-weight: inherit;
+}
+
 /*</editor-fold>*/
 
 /*<editor-fold desc="Font Size">*/
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
 }
 
 h3 {
@@ -79,7 +85,6 @@ p {
 strong {
     font-size: 0.9rem;
 }
-
 /*</editor-fold>*/
 
 .content-section {
@@ -95,6 +100,10 @@ strong {
     background-color: var(--main-color);
 }
 
+.content-section__gradient {
+    background-image: none;
+}
+
 .content-container {
     width: 100%;
     margin: auto;
@@ -105,33 +114,40 @@ strong {
     text-transform: uppercase;
 }
 
-.tabs-container {
-    background-color: transparent;
-}
-
 .subtitle {
     color: var(--main-color);
-    text-shadow: 1px 1px #40322F;
+    text-shadow: 1px 1px var(--dark-color);
 }
 
 .highlight {
     color: var(--accent-color);
     text-shadow: 1px 1px var(--dark-color);
     font-family: 'Rubik Bubbles', cursive;
-    letter-spacing: 4px;
-    font-size: inherit;
+    font-size: 1.2em;
 }
 
 .highlight__light {
     color: var(--light-color)
 }
 
+#globalLoader {
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
 /*<editor-fold desc="Link">*/
 .nav-link {
-    padding: 0;
-    margin: 10px 0;
     font-weight: 400;
-    border-bottom: 0.15rem solid transparent;
+    border-bottom: var(--border-width) solid transparent;
 }
 
 .nav-link:hover {
@@ -140,11 +156,11 @@ strong {
 }
 
 .nav-link__active {
-    border-bottom: 0.15rem solid var(--dark-color);
+    border-bottom: var(--border-width) solid var(--dark-color);
 }
 
 .nav-link__active:hover {
-    border-bottom: 0.15rem solid var(--accent-color);
+    border-bottom: var(--border-width) solid var(--accent-color);
 }
 /*</editor-fold>*/
 
@@ -155,9 +171,10 @@ strong {
     font-family: inherit;
     color: var(--dark-color);
     background-color: transparent;
-    border: 0.15rem solid var(--dark-color);
+    border: var(--border-width) solid var(--dark-color);
     border-radius: 0.5rem;
     font-weight: 700;
+    text-transform: uppercase;
 }
 
 .button:hover {
@@ -171,13 +188,23 @@ strong {
     outline: 0;
 }
 
+.button__reverse{
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.button__reverse:hover{
+    color: var(--white-color);
+    border-color: var(--white-color);
+}
+
 .button__light:hover{
-    border: 0.15rem solid var(--light-color);
+    border: var(--border-width) solid var(--light-color);
     color: var(--light-color);
 }
 
 .button__accent:hover{
-    border: 0.15rem solid var(--accent-color);
+    border: var(--border-width) solid var(--accent-color);
     color: var(--accent-color);
 }
 /*</editor-fold>*/
@@ -278,6 +305,10 @@ select.input option{
 
     .content-container {
         width: 80%
+    }
+
+    .content-section__gradient{
+        background-image: linear-gradient(to right, var(--white-color) 30%, var(--light-color) 30%);
     }
 
     .nav-link{

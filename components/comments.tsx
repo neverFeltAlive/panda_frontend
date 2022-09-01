@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import {Highlight, Hr} from "./UI";
+import {Hr} from "./UI";
 import {FaRegCommentAlt} from "react-icons/fa";
 import styled from "styled-components";
-import {Colors} from "../constants";
+import {Colors, Rems} from "../constants";
 import CommentForm from "./form/comment";
 
 //region Styled
@@ -30,12 +30,12 @@ const Article = styled.article`
   padding: 10px;
   margin: 10px 0;
   background-color: ${Colors.white.normal};
-  box-shadow: 0 0 1rem ${Colors.accent.normal};
-  border-radius: 1rem;
-  border: 0.15rem solid transparent;
+  box-shadow: ${Rems.boxShadow} ${Colors.accent.normal};
+  border-radius: ${Rems.borderRadius};
+  border: ${Rems.border} solid transparent;
 
   &:hover {
-    border: 0.15rem solid ${Colors.dark.normal};
+    border-color: ${Colors.dark.normal};
   }
 
   @media (min-width: 992px) {
@@ -71,20 +71,6 @@ const Column = styled.div`
 `;
 
 const Button = styled.button`
-  font-size: 1.2rem;
-  text-align: center;
-  background-color: transparent;
-  color: ${Colors.accent.normal};
-  border: 2px solid ${Colors.accent.normal};
-  border-radius: 0.5rem;
-  padding: 0.3rem;
-  font-family: inherit;
-
-  &:hover {
-    color: ${Colors.dark.normal};
-    border-color: ${Colors.dark.normal};
-  }
-
   @media (min-width: 992px) {
     float: left;
   }
@@ -103,49 +89,39 @@ const Comments : FC<CommentsProps> = ({setModal}) => {
 
     return (
         <>
-            <div style={{display: "flex"}}>
-                <svg viewBox="0 0 200 15" preserveAspectRatio="none">
-                    <polygon style={{fill: Colors.white.normal}} points="0, 13 200, 0 0, 0"/>
-                    <polygon style={{fill: Colors.accent.transparent}} points="0 15, 0 13, 200 0, 200 2"/>
-                    <polygon style={{fill: Colors.accent.transparent}} points="0 15, 200 2, 200 15"/>
-                </svg>
-            </div>
             <Section className="content-section">
-                <h2>Детский Сад <Highlight style={{fontSize: "2.6rem"}}><q>Панда</q></Highlight></h2>
+                <h2>Детский Сад <strong className="highlight">Панда</strong></h2>
                 <h3>В СЛОВАХ</h3>
                 <Hr/>
                 <Container className="content-container">
                     <Column>
                         <Article>
-                            <strong>МАМА</strong>
-                            <p><span className="highlight">Ольга</span></p>
-                            <strong>СЕНТ, 2022</strong>
+                            <strong>ПАПА</strong>
+                            <h6><span className="highlight">Виктор</span></h6>
+                            <strong>АВГ, 2022</strong>
                             <Hr/>
                             <p>Наш ребенок с радостью идет в Панду и с нетерпением ждёт встречи с друзьями.
-                                Прекрасные
-                                нянички. Доброе, уважительное, заботливое отношение. Спасибо вам огромное</p>
+                                Внимательный
+                                персонал. Доброе, уважительное, заботливое отношение. Спасибо вам огромное</p>
                         </Article>
                         <ArticleEven>
-                            <strong>ПАПА</strong>
-                            <p><span className="highlight">Виктор</span></p>
-                            <strong>СЕНТ, 2022</strong>
+                            <strong>МАМА</strong>
+                            <h6><span className="highlight">Дарья</span></h6>
+                            <strong>АВГ, 2022</strong>
                             <Hr/>
-                            <p>Наш ребенок с радостью идет в Панду и с нетерпением ждёт встречи с друзьями.
-                                Прекрасные
-                                нянички. Доброе, уважительное, заботливое отношение. Спасибо вам огромное</p>
+                            <p>Спасибо за классное начало дня! Все было очень здорово, увлекательно и весело! Ребёнок счастлив :)</p>
                         </ArticleEven>
                     </Column>
                     <ArticleBig>
                         <strong>ВОСПИТАТЕЛЬ</strong>
-                        <p><span className="highlight">Анастасия</span></p>
+                        <h6><span className="highlight">Валентина</span></h6>
                         <strong>СЕНТ, 2022</strong>
                         <Hr/>
-                        <p>Наш ребенок с радостью идет в Панду и с нетерпением ждёт встречи с друзьями. Прекрасные
-                            нянички. Доброе, уважительное, заботливое отношение. Спасибо вам огромное</p>
+                        <p>Я воспитатель с большим стажем, работала в муниципальных и частных детских садах. Впервые вижу насколько все продуманно до мелочей: шкафчики с антресолью для хранения одежды, рабочие места воспитателям, комфортные места для занятий, отдельная зона для игры, уютная столовая с красивой посудой и мное другое. Замечательная детская площадка. Поздравляю с открытием.</p>
                     </ArticleBig>
                 </Container>
                 <br/>
-                <Button onClick={onClick}><FaRegCommentAlt/> Оставить комментарий</Button>
+                <Button className="button button__reverse" onClick={onClick}><FaRegCommentAlt/> Оставить отзыв</Button>
                 <br/>
             </Section>
         </>

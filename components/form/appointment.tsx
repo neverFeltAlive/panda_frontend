@@ -49,6 +49,17 @@ const Container = styled.div`
   }
 `;
 
+export const AppointmentForm : FC = () => {
+    return (
+        <section>
+            <h5 className="section-title" style={{textAlign: "center"}}>записаться на экскурсию</h5>
+            <Hr/>
+            <Form apiEndpoint={`${ApiRoot}/create-application`} items={items} buttonText="Отправить"/>
+        </section>
+    )
+}
+
+
 const Appointment : FC = () => {
     return (
         <section className="content-section">

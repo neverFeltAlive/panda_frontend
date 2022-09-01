@@ -5,7 +5,7 @@ import {Colors} from "../constants";
 import ReactDOM from 'react-dom';
 
 //region Styled
-const Wrapper = styled.div`
+export const OverlayWrapper = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
@@ -50,38 +50,33 @@ const Cross = styled(FaTimes)`
 `;
 //endregion
 
-interface ModalProps {
-    isVisible: boolean,
-    setVisible: (state: boolean) => void,
+export interface OverlayProps {
+    closeModal: () => void,
     content: null | FC,
 }
 
-const Modal = ({isVisible, setVisible, content} : ModalProps): null | JSX.Element => {
-    if (isVisible) {
-        return ReactDOM.createPortal(
-            (
-                <Wrapper onClick={(event) => {
+const Modal: FC<OverlayProps> = ({closeModal, content}) => {
+    return ReactDOM.createPortal(
+        (
+            <OverlayWrapper onClick={(event) => {
+                event.stopPropagation();
+                closeModal();
+            }}>
+                <Container onClick={(event) => {
                     event.stopPropagation();
-                    setVisible(false);
                 }}>
-                    <Container onClick={(event) => {
-                        event.stopPropagation();
-                    }}>
-                        <>
-                            <Cross onClick={(event) => {
-                                setVisible(false)
-                            }}/>
-                            <br/>
-                            {content}
-                        </>
-                    </Container>
-                </Wrapper>
-            ),
-            document.getElementById("modal") as HTMLElement
-        )
-    } else {
-        return null;
-    }
+                    <>
+                        <Cross onClick={(event) => {
+                            closeModal()
+                        }}/>
+                        <br/>
+                        {content}
+                    </>
+                </Container>
+            </OverlayWrapper>
+        ),
+        document.getElementById("modal") as HTMLElement
+    )
 };
 
 export default Modal;

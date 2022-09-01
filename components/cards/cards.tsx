@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
 
-import {Hr, SectionTitle, Section, Arrow} from "../UI";
+import {Hr, SectionTitle, Section, Arrow, SliderContainer} from "../UI";
 import styled from "styled-components";
-import {Colors} from "../../constants";
+import {Colors, Rems} from "../../constants";
 
 //region TSProps
 export interface Image {
@@ -21,30 +21,37 @@ interface CardsProps {
     title: string,
     cards: Card[]
 }
+
 //endregion
 
 //region Styled
-const Container = styled.div`
+const Container = styled(SliderContainer)`
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   position: relative;
+  
+  @media (min-width: 1200px){
+    padding: 0 40px;
+  }
 `;
 
 const Card = styled.article`
   text-align: center;
   height: 250px;
-  border-radius: 1rem;
+  border-radius: ${Rems.borderRadius};
   display: flex;
   align-items: center;
   background-color: ${Colors.white.normal};
   z-index: 1;
-  border: 0.15rem solid transparent;
+  border: ${Rems.border} solid transparent;
+  padding: 20px;
 
-  &:hover{
-    border: 0.15rem solid ${Colors.dark.normal};
+
+  &:hover {
+    border-color: ${Colors.dark.normal};
   }
-  
+
   @media (min-width: 768px) {
     height: 300px;
   }
@@ -54,27 +61,17 @@ const Card = styled.article`
   }
 `;
 
-/* Img
-const Img = styled.img`
-  width: 100%;
-  height: 50%;
-`;*/
-
-const CardBody = styled.div`
-  width: 100%;
-  padding: 20px;
-`;
-
 const Wrapper = styled.div`
   width: 80%;
   display: flex;
   justify-content: center;
-  
-  @media (min-width: 768px){
+
+  @media (min-width: 768px) {
     width: 45%;
+    margin: 0 -180px;
   }
 
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     margin: 0;
   }
 `;
@@ -84,26 +81,18 @@ const WrapperSide = styled(Wrapper)`
   scale: 0.9;
   z-index: 0;
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     display: block;
     opacity: 50%;
+    margin: 0;
   }
 
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     opacity: 100%;
     margin: 0 10px;
   }
 `;
 
-const WrapperMain = styled(Wrapper)`
-  @media (min-width: 768px){
-    margin: 0 -180px;
-  }
-
-  @media (min-width: 1200px){
-    margin: 0;
-  }
-`;
 //endregion
 
 const Cards: FC<CardsProps> = ({cards, title}) => {
@@ -121,60 +110,38 @@ const Cards: FC<CardsProps> = ({cards, title}) => {
 
     return (
         <Section title={sectionTitle} className="content-section__light">
-            <Container>
-                <Arrow isRight={false} onClick={() => {setCurrent(previous)}}/>
-                <Arrow isRight={true} onClick={() => {setCurrent(next)}}/>
-                {active.map((card, index) => {
-                    /* Img
-                    const image = (
-                        <Img
-                            src={card.image.src}
-                            alt={card.image.alt}
-                        />
-                    );
-*/
-                    const body = (
-                        <CardBody>
-                            <h4>{card.title}</h4>
-                            <Hr/>
-                            <p>{card.text}</p>
-                        </CardBody>
-                    );
+            <Container onClickRight={() => {
+                setCurrent(next)
+            }} onClickLeft={() => {
+                setCurrent(previous)
+            }}>
+                <>
+                    {active.map((card, index) => {
+                        const body = (
+                            <Card>
+                                <div>
+                                    <h4>{card.title}</h4>
+                                    <Hr/>
+                                    <p>{card.text}</p>
+                                </div>
+                            </Card>
+                        );
 
-                    const cardFull = (card.id % 3 === 0) ? (
-                        <Card>
-                            {/*{image}*/}
-                            {body}
-                        </Card>
-                    ) : (
-                        <Card>
-                            {body}
-                            {/*{image}*/}
-                        </Card>
-                    );
-
-                    if (index === 1){
-                        return (
-                            <WrapperMain key={card.id}>
-                                {cardFull}
-                            </WrapperMain>
-                        );
-                    }
-                    else if (index === 0){
-                        return (
-                            <WrapperSide key={card.id}>
-                                {cardFull}
-                            </WrapperSide>
-                        );
-                    }
-                    else{
-                        return (
-                            <WrapperSide key={card.id}>
-                                {cardFull}
-                            </WrapperSide>
-                        );
-                    }
-                })}
+                        if (index === 1) {
+                            return (
+                                <Wrapper key={card.id}>
+                                    {body}
+                                </Wrapper>
+                            );
+                        } else {
+                            return (
+                                <WrapperSide key={card.id}>
+                                    {body}
+                                </WrapperSide>
+                            );
+                        }
+                    })}
+                </>
             </Container>
         </Section>
     );

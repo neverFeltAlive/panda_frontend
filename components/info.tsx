@@ -4,7 +4,7 @@ import {Colors} from "../constants";
 import styled from "styled-components";
 import CallForm from "./form/call";
 import ApplicationForm from "./form/application";
-import Appointment from "./form/appointment";
+import Appointment, {AppointmentForm} from "./form/appointment";
 
 //region Styled
 const Div = styled.div`
@@ -52,7 +52,7 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
                     </article>
                     <br/><br/>
                     <article>
-                        <h3 className="section-title">Наш детския сад предлагает несколько режимов посещения</h3>
+                        <h3 className="section-title">Наш детский сад предлагает несколько режимов посещения</h3>
                         <Hr/>
                         <ul>
                             <li><p>С 7:30 до 13:00 или с 12:30 до 18:00 – <Span className="highlight">неполный
@@ -78,7 +78,7 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
                             <Strong>Для поступления вы можете&nbsp;
                                 <A onClick={() => setModal(CallForm)}>связаться по телефону</A> или&nbsp;
                                 <A onClick={() => setModal(ApplicationForm)}>оставить заявку онлайн</A>, a также&nbsp;
-                                <A onClick={() => setModal(Appointment)}>записаться на экскурсию.</A>&nbsp;
+                                <A onClick={() => setModal(AppointmentForm)}>записаться на экскурсию.</A>&nbsp;
                             </Strong>
                             Вам подберут удобное для вас время для ознакомительной
                             экскурсии по детскому саду: спальни,
@@ -153,10 +153,11 @@ export const UsInfo: FC = () => {
                         <h3 className="section-title">Предмет деятельности</h3>
                         <Hr/>
                         <ul>
-                            <li><p>присмотр за детьми в возрасте 2 - 7.5</p></li>
-                            <li><p>уход за детьми возрасте 2 - 7.5</p></li>
-                            <li><p>оздоровление детей возрасте 2 - 7.5</p></li>
-
+                            <li><p>присмотр за детьми в возрасте 2 - 7</p></li>
+                            <li><p>уход за детьми в возрасте 2 - 7</p></li>
+                            <li><p>оздоровление детей в возрасте 2 - 7</p></li>
+                            <li><p>дополнительное развитие детей в возресте 3 - 7</p></li>
+                            <li><p>индивидуальные занятия детей в возресте 3.5 - 7</p></li>
                         </ul>
                     </article>
                 </Div>

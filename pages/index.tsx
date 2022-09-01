@@ -2,8 +2,7 @@ import type {NextPage} from 'next';
 import Link from "next/link";
 import Head from 'next/head';
 import styled from "styled-components";
-
-import {Highlight, Hr} from "../components/UI"
+import {Hr} from "../components/UI"
 import {Colors} from "../constants";
 
 //region Styled
@@ -48,7 +47,7 @@ const Home: NextPage = () => {
                 <Wrapper>
                     <Section>
                         <h2>Частный</h2>
-                        <h1>Детский Сад <span className="highlight" style={{fontSize: "3.1rem"}}><q>Панда</q></span></h1>
+                        <h1>Детский Сад <span className="highlight">Панда</span></h1>
                         <h6>Лучший детский сад со спортивным уклоном, речевым развитием и заботой о каждом ребёнке во
                             Владимире.</h6>
                         <Space/>

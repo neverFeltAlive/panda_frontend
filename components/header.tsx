@@ -2,16 +2,16 @@ import React, {FC} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import styled from "styled-components";
-import {Colors} from "../constants";
+import {Colors, ContactData, Rems} from "../constants";
 import ApplicationForm from "./form/application";
+import CallForm from "./form/call";
+import {FaPhoneAlt} from "react-icons/fa";
+import {setModalType} from "../pages/_app";
 
 //region Styled
 const Img = styled.img`
   margin: 10px;
-  
-  @media (max-width: 574px) {
-    display: none;
-  }
+  display: none;
 
   @media (min-width: 576px) {
     width: 40px;
@@ -29,27 +29,30 @@ const Img = styled.img`
   }
 `;
 
-const Wrapper = styled.header`
+const Wrapper = styled.div`
   width: 100%;
   background-color: ${Colors.white.normal};
-  padding: 0 20px;
-  border-bottom: 0.15rem solid ${Colors.dark.normal};
+  padding: ${Rems.windowPaddings};
+  border-bottom: ${Rems.border} solid ${Colors.dark.normal};
 `;
 
 const Content = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: auto;
+
+  @media (min-width: 992px) {
+    justify-content: space-between;
+  }
 `;
 
-const ContentBottom = styled.div`
+const ContentBottom = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-  @media (min-width: 992px){
-    width: 50%;
+
+  @media (min-width: 992px) {
+    width: 60%;
   }
 `;
 
@@ -70,22 +73,27 @@ const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
 
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     display: flex;
   }
+`;
+
+const Button = styled.button`
+  font-size: 0.7rem;
+  margin-left: 10px;
 `;
 
 //endregion
 
 interface HeaderProps {
-    setModal: (content: FC) => void,
+    setModal: setModalType,
 }
 
 const Header: FC<HeaderProps> = ({setModal}) => {
     const router = useRouter();
 
     return (
-        <>
+        <header>
             <Wrapper>
                 <Content className="content-container">
                     <Brand>
@@ -96,16 +104,23 @@ const Header: FC<HeaderProps> = ({setModal}) => {
                             />
                         </Link>
                         <Link href="/">
-                            <h6 className="nav-link" style={{fontWeight: "700"}}>Детский сад <span
-                                style={{fontSize: "1.5rem"}} className="highlight"><q>Панда</q></span></h6>
+                            <h6>
+                                <a>Детский сад <span
+                                    className="highlight">Панда</span>
+                                </a>
+                            </h6>
                         </Link>
                     </Brand>
                     <Nav>
-
-                        <button className="button button__accent" style={{marginLeft: "2rem"}} onClick={() => {
+                        <Button className="button button__accent" onClick={() => {
+                            setModal(CallForm);
+                        }}>
+                            <FaPhoneAlt/> {ContactData.phoneNumber}
+                        </Button>
+                        <Button className="button button__accent" onClick={() => {
                             setModal(ApplicationForm)
                         }}>Оставить заявку
-                        </button>
+                        </Button>
                     </Nav>
                 </Content>
             </Wrapper>
@@ -122,9 +137,13 @@ const Header: FC<HeaderProps> = ({setModal}) => {
                             нас
                         </a>
                     </Link>
+                    <Link href="/feed">
+                        <a className={router.pathname === "/feed" ? "nav-link nav-link__active" : "nav-link"}>Галлерея
+                        </a>
+                    </Link>
                 </ContentBottom>
             </Wrapper>
-        </>
+        </header>
     );
 };
 

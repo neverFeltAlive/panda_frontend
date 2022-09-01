@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Highlight, Hr, Section, SectionTitle} from "../UI";
+import {Hr, Section, SectionTitle} from "../UI";
 import styled from "styled-components";
-import {Colors} from "../../constants";
+import {Colors, Rems} from "../../constants";
 
 //region TSProps
 export interface Tab {
@@ -17,17 +17,45 @@ type TabsProps = {
 //endregion
 
 //region Styled
-const TitlesContainer = styled.div`
-  text-align: center;
-
-  @media (min-width: 992px) {
+const Container = styled.div`
+  @media (min-width: 992px){
+    padding: 2rem;
     display: flex;
     justify-content: center;
   }
 `;
 
+const TitlesContainer = styled.div`
+  background-color: ${Colors.light.normal};
+  border: ${Rems.border} solid ${Colors.dark.normal};
+  border-radius: ${Rems.borderRadius};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  @media (min-width: 992px){
+    padding: 40px;
+
+    text-align: left;
+  }
+`;
+
+const TextContainer = styled.div`
+  padding: 40px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media (min-width: 992px){
+    padding: 40px;
+    width: 50%;
+  }
+`;
+
 const H4 = styled.h5`
-  margin: 0 20px;
+  margin: 1rem;
   opacity: 75%;
   color: ${Colors.accent.normal};
   text-shadow: 1px 1px #40322F;
@@ -44,58 +72,52 @@ const H4Active = styled(H4)`
 const Tab = styled.article`
   display: flex;
   align-items: center;
-  width: 90%;
-  padding: 20px;
-  margin: auto;
-  text-align: center;
-
-  @media (min-width: 992px) {
-    width: 70%;
-    height: 400px;
-    padding: 20px 50px;
-    border-radius: 50%;
-    box-shadow: 5px 5px 5px 0 ${Colors.accent.normal};
-  }
 `;
 //endregion
 
 const Tabs = ({title, tabs}: TabsProps) => {
     const [current, setCurrent] = useState(0)
 
-    const sectionTitle: SectionTitle = {
-        title: title,
-        style: {textAlign: "center"}
-    }
-
     return (
-        <Section title={sectionTitle}>
-            <TitlesContainer>
-                {tabs.map((tab, index) => {
-                    if (current === index) {
-                        return (
-                            <H4Active key={tab.id} onClick={() => {
-                                setCurrent(index)
-                            }}>{tab.title}</H4Active>
-                        );
-                    } else {
-                        return (
-                            <H4 key={tab.id} onClick={() => {
-                                setCurrent(index)
-                            }}>{tab.title}</H4>
-                        );
-                    }
-                })}
-            </TitlesContainer>
-            {tabs.map((tab, index) => {
-                if (current === index) {
-                    return (
-                        <Tab key={tab.id}>
-                            <p>{tab.text}</p>
-                        </Tab>
-                    );
-                }
-            })}
-        </Section>
+        <section className="content-section content-section__gradient">
+            <div className="content-container">
+                <h3 className="section-title">{title}</h3>
+                <Hr/>
+                <Container>
+                    <TitlesContainer>
+                        <div>
+                            {tabs.map((tab, index) => {
+                                if (current === index) {
+                                    return (
+                                        <H4Active key={tab.id} onClick={() => {
+                                            setCurrent(index)
+                                        }}>{tab.title}</H4Active>
+                                    );
+                                } else {
+                                    return (
+                                        <H4 key={tab.id} onClick={() => {
+                                            setCurrent(index)
+                                        }}>{tab.title}</H4>
+                                    );
+                                }
+                            })}
+                        </div>
+                    </TitlesContainer>
+                    <TextContainer>
+                        {tabs.map((tab, index) => {
+                            if (current === index) {
+                                return (
+                                    <Tab key={tab.id}>
+                                        <p>{tab.text}</p>
+                                    </Tab>
+                                );
+                            }
+                        })}
+                    </TextContainer>
+                </Container>
+            </div>
+
+        </section>
     );
 };
 

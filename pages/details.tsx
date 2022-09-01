@@ -21,7 +21,6 @@ const Details: NextPage<DetailsPageProps> = ({setModal, images}) => {
             </Head>
             <main>
                 <ParentsInfo setModal={setModal}/>
-                <Carousel images={images}/>
                 <MapBox/>
                 <Appointment/>
             </main>

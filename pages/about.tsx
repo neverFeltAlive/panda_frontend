@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {NextPage} from "next";
 import Head from "next/head";
 import Carousel from "../components/carousel/carousel";
@@ -16,10 +16,11 @@ import CardsData from "../components/cards/data";
 import GroupsData from "../components/groups/data";
 import CarouselData from "../components/carousel/data";
 import {Colors} from "../constants";
-import Footer from "../components/footer";
+import {Transition} from "../components/UI";
+import {setModalType} from "./_app";
 
 export interface PageProps {
-    setModal: (content: FC) => void,
+    setModal: setModalType,
 }
 
 const About: NextPage<PageProps> = ({setModal}) => {
@@ -31,21 +32,16 @@ const About: NextPage<PageProps> = ({setModal}) => {
             </Head>
             <main>
                 <Scheme/>
+                <Transition from={Colors.main.normal} through={Colors.light.normal} to={Colors.light.normal}/>
                 <Cards title="наши приоритеты" cards={CardsData}/>
-
-                <div style={{display: "flex"}}>
-                    <svg viewBox="0 0 200 15" preserveAspectRatio="none">
-                        <polygon style={{fill: Colors.light.normal}} points="0, 13 200, 0 0, 0"/>
-                        <polygon style={{fill: Colors.white.normal}} points="0 15, 0 13, 200 0, 200 2"/>
-                        <polygon style={{fill: Colors.white.normal}} points="0 15, 200 2, 200 15"/>
-                    </svg>
-                </div>
-
+                <Transition from={Colors.light.normal} through={Colors.white.normal} to={Colors.white.normal}/>
+                <Transition from={Colors.white.normal} through={Colors.white.normal}  to={Colors.accent.transparent}/>
                 <Comments setModal={setModal}/>
+                <Transition from={Colors.accent.transparent} through={Colors.accent.normal} to={null}/>
                 <Groups title="наши группы" groups={GroupsData}/>
                 <Areas title="наши направления" areas={AreasData}/>
                 <MapBox/>
-                <Tabs title="мы гарантируем" tabs={TabsData}/>
+                <Tabs title="частный садик панда гарантирует" tabs={TabsData}/>
                 <Carousel images={CarouselData}/>
                 <Appointment/>
             </main>

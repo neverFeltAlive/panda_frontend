@@ -84,7 +84,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText}): JSX.Element => {
             fetch(apiEndpoint, {
                 method: "POST",
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Origin": "localhost",
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({...values})
@@ -238,7 +238,6 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText}): JSX.Element => {
                         className="input"
                         name="agreement"
                         type="checkbox"
-                        placeholder=""
                         required
                     /> Я согласен на обработку персональных данных
                 </label>

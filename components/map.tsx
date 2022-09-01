@@ -86,7 +86,7 @@ const MapBox = () => {
                 </MapContainer>
                 <TextContainer>
                     <Article>
-                        <p>Мы расположены в центре города <Strong>недалеко от здания областной
+                        <p><strong style={{fontWeight: "inherit"}}>Садик Панда</strong> расположен в центре города <Strong>недалеко от здания областной
                             админимтрации</Strong>.
                         </p>
                     </Article>

@@ -1,9 +1,9 @@
 import React, {FC} from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import {Highlight, Hr, Links} from "./UI";
+import {Hr, Links} from "./UI";
 import {FaEnvelope, FaHome, FaPhoneAlt} from "react-icons/fa";
-import {Colors} from "../constants";
+import {Colors, ContactData, Rems} from "../constants";
 import CommentForm from "./form/comment";
 import ApplicationForm from "./form/application";
 import CallForm from "./form/call";
@@ -18,21 +18,23 @@ const Wrapper = styled.footer`
 `;
 
 const Container = styled.section`
-  padding: 10px 10px;
-  
-  @media (min-width: 992px){
+  padding: ${Rems.windowPaddings};
+
+  @media (min-width: 992px) {
+    margin: auto;
     text-align: left;
     justify-content: space-between;
     display: flex;
-    padding: 0 20px;
   }
 `;
 
-const ContainerShort = styled(Container)`
+const ContainerShort = styled.div`
   text-align: center;
-  margin: auto;
 
-  @media (min-width: 992px){
+  @media (min-width: 1200px) {
+    justify-content: space-between;
+    margin: auto;
+    display: flex;
     padding: 20px 0;
     text-align: left;
     width: 80%;
@@ -42,14 +44,14 @@ const ContainerShort = styled(Container)`
 const Brand = styled.div`
   display: none;
   text-align: center;
-  
-  @media (min-width: 992px){
+
+  @media (min-width: 992px) {
     display: block;
   }
 `;
 
 const Block = styled.div`
-    margin: 20px 0;
+  margin: 20px 0;
 `;
 
 const Button = styled.button`
@@ -58,19 +60,28 @@ const Button = styled.button`
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  
-  &:hover{
+
+  &:hover {
     color: ${Colors.accent.normal} !important;,
   }
 `;
 
 const P = styled.p`
+  display: none;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+`;
+
+const A = styled.a`
   cursor: pointer;
-  
-  &:hover{
+
+  &:hover {
     color: ${Colors.accent.normal} !important;,
   }
 `;
+
 //endregion
 
 interface FooterProps {
@@ -81,53 +92,62 @@ const Footer: FC<FooterProps> = ({setModal}) => {
     return (
         <Wrapper>
             <Hr/>
-            <Container>
-                <p>свяжитесь с нами в социальных сетях:</p>
-                <Links/>
-            </Container>
+            <div>
+                <Container>
+                    <P>свяжитесь с нами в социальных сетях:</P>
+                    <Links/>
+                </Container>
+            </div>
             <Hr/>
             <ContainerShort>
                 <Brand>
                     <h3>Частный</h3>
-                    <h2>Детский Сад <br/> <span className="highlight" style={{fontSize: "2.6rem"}}><q>Панда</q></span></h2>
+                    <h2>Детский Сад <br/> <span className="highlight">Панда</span>
+                    </h2>
                 </Brand>
                 <Block>
                     <h3>Полезные ссылки:</h3>
-                    <div style={{display: "flex", justifyContent: "space-between"}}>
-                        <div>
+                    <div style={{display: "flex", justifyContent: "center"}}>
+                        <div style={{marginRight: "30px"}}>
                             <Link href="/about">
-                                <P>Главная</P>
-                            </Link>
+                                <A>Главная</A>
+                            </Link><br/>
                             <Link href="/details">
-                                <P>Родителям</P>
-                            </Link>
+                                <A>Родителям</A>
+                            </Link><br/>
                             <Link href="/contacts">
-                                <P>О нас</P>
-                            </Link>
+                                <A>О нас</A>
+                            </Link><br/>
                         </div>
                         <div>
-                            <Button onClick={() => {setModal(CallForm)}}>
+                            <Button onClick={() => {
+                                setModal(CallForm)
+                            }}>
                                 Заказать звонок
                             </Button><br/>
-                            <Button onClick={() => {setModal(CommentForm)}}>
+                            <Button onClick={() => {
+                                setModal(CommentForm)
+                            }}>
                                 Оставить комментарий
                             </Button><br/>
-                            <Button onClick={() => {setModal(ApplicationForm)}}>
+                            <Button onClick={() => {
+                                setModal(ApplicationForm)
+                            }}>
                                 Оставить заявку
                             </Button><br/>
                         </div>
                     </div>
                 </Block>
                 <Block>
-                    <h3>Наши контакты</h3>
+                    <h3>Наши контакты:</h3>
                     <p>
-                        <FaHome/> Владимир, Верхне-Лыбедская 18А
+                        <FaHome/> {ContactData.address.short}
                     </p>
                     <p>
-                        <FaEnvelope/> panda-kids33@yandex.ru
+                        <FaEnvelope/> {ContactData.email}
                     </p>
                     <p>
-                        <FaPhoneAlt/> +7 910 170 23 53
+                        <FaPhoneAlt/> {ContactData.phoneNumber}
                     </p>
                 </Block>
             </ContainerShort>

@@ -12,16 +12,19 @@ class MyDocument extends Document {
 
     render(): ReactElement {
         return (
-            <Html>
-                <Head />
+            <Html lang="ru">
+                <Head/>
 
                 <body>
                     <Main/>
                     <NextScript/>
 
                     <div id="modal"></div>
-                </body>
 
+                    <div id="globalLoader">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="Символ звгрузки"/>
+                    </div>
+                </body>
             </Html>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Highlight, Hr, Section, SectionTitle} from "../UI";
+import {Hr, Section, SectionTitle} from "../UI";
 import styled from "styled-components";
 import {Image} from "../cards/cards";
 import {Colors} from "../../constants";
@@ -27,6 +27,7 @@ const Card = styled.article`
 const Img = styled.img`
   width: 100%;
   padding: 10px;
+  margin: auto;
 
   @media (min-width: 1200px) {
     width: 280px;
@@ -41,20 +42,20 @@ const Strong = styled.strong`
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
 const TextContainer = styled.div`
   @media (min-width: 992px) {
-    width: 55%;
+    width: 45%;
     padding: 40px 40px;
   }
 `;
 
 const ImageContainer = styled.div`
   display: none;
-  width: 45%;
+  width: 680px;
   justify-content: center;
 
   @media (min-width: 992px) {
@@ -109,7 +110,7 @@ const Areas = ({title, areas}: AreasProps) => {
                                 )}
                                 <Card>
                                     <Strong>{area.type}</Strong>
-                                    <h4 >{area.title}</h4>
+                                    <h4>{area.title}</h4>
                                     <p>{area.text}</p>
                                 </Card>
                             </div>

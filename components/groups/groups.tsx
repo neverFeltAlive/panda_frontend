@@ -23,11 +23,9 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 10%;
   
   @media (min-width: 992px){
-    top: 20%;
+    transform: translateY(-20px);
   }
 `;
 
@@ -83,12 +81,6 @@ const CardEven = styled(Card)`
 const Groups = ({title, groups}: GroupsProps) => {
     return (
         <section style={{position: "relative"}}>
-            <div style={{display: "flex"}}>
-                <svg viewBox="0 0 200 70" preserveAspectRatio="none">
-                    <polygon style={{fill: Colors.accent.transparent}} points="0, 13 200, 0 0, 0"/>
-                    <polygon style={{fill: Colors.accent.normal}} points="0 15, 0 13, 200 0, 200 2"/>
-                </svg>
-            </div>
             <Container>
                 {groups.map((group, index) => {
                     const body = (

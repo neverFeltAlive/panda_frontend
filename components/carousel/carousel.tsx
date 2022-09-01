@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import styled from "styled-components";
 
-import {Arrow} from "../UI";
-import {Colors} from "../../constants";
+import {Arrow, SliderContainer} from "../UI";
+import {Colors, Rems} from "../../constants";
 
 //region TSProps
 export interface ImageData {
@@ -11,24 +11,26 @@ export interface ImageData {
     text: string,
     image: string,
 }
-
-type CarouselProps = {
-    images: ImageData[]
-}
 //endregion
 
 //region Styled
 const Img = styled.img`
   width: 90%;
-  border-radius: 20px;
+  border-radius: ${Rems.borderRadius};
   height: 250px;
-  box-shadow: 5px 5px 15px 0 ${Colors.accent.normal};
+  box-shadow: ${Rems.boxShadow} ${Colors.accent.normal};
   
   @media (min-width: 992px){
     height: 600px;
+    width: 900px;
   }
   @media (min-width: 1200px){
     height: 900px;
+    width: 1200px;
+  }
+  @media (min-width: 1800px){
+    height: 1000px;
+    width: 1700px;
   }
 `;
 
@@ -44,7 +46,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const Container = styled.div`
+const Container = styled(SliderContainer)`
   position: relative;
   display: flex;
   justify-content: center;
@@ -79,7 +81,7 @@ const ImageTitle = styled.h4`
 `;
 //endregion
 
-const Carousel = ({images}: CarouselProps) => {
+const Carousel : FC<{images: ImageData[]}> = ({images}) => {
     const [current, setCurrent] = useState(0);
     const length = images.length;
 
@@ -91,24 +93,24 @@ const Carousel = ({images}: CarouselProps) => {
 
     return (
         <Wrapper>
-            <Container>
-                <Arrow onClick={() => {setCurrent(previous)}} isRight={false}/>
-                <Arrow onClick={() => {setCurrent(next)}} isRight={true}/>
-                {images.map((image, index) => {
-                    return (
-                        <div key={image.id}>
-                            {index === current && (
-                                <>
-                                    <Img src={image.image} alt={image.text}></Img>
-                                    <ImageDiv>
-                                        <ImageTitle>{image.title}</ImageTitle>
-                                        <ImageText>{image.text}</ImageText>
-                                    </ImageDiv>
-                                </>
-                            )}
-                        </div>
-                    )
-                })}
+            <Container onClickRight={() => {setCurrent(next)}} onClickLeft={() => {setCurrent(previous)}}>
+                <>
+                    {images.map((image, index) => {
+                        return (
+                            <div key={image.id}>
+                                {index === current && (
+                                    <>
+                                        <Img src={image.image} alt={image.text}></Img>
+                                        <ImageDiv>
+                                            <ImageTitle>{image.title}</ImageTitle>
+                                            <ImageText>{image.text}</ImageText>
+                                        </ImageDiv>
+                                    </>
+                                )}
+                            </div>
+                        )
+                    })}
+                </>
             </Container>
         </Wrapper>
     );
