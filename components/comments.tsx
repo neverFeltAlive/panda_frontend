@@ -86,7 +86,7 @@ interface CommentsProps {
 const Comments: FC<CommentsProps> = ({setModal}) => {
 
     const onClick = () => {
-        setModal(<CommentForm/>);
+        setModal(<CommentForm onSubmit={() => {setModal(null)}}/>);
     }
 
     return (

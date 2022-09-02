@@ -1,5 +1,3 @@
-import {BsTruck} from "react-icons/all";
-
 export const Colors = {
     main: {
         normal: "rgba(252, 241, 86, 1)",
