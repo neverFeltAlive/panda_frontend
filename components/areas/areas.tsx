@@ -64,6 +64,7 @@ const ImageContainer = styled.div`
   }
 
   @media (min-width: 1200px) {
+    width: 680px;
     height: 600px;
     padding: 20px;
     display: flex;
