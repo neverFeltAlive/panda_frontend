@@ -94,7 +94,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
                 console.log(error);
             }
 
-            alert(onSubmit);
+            onSubmit();
         }
     }
 
