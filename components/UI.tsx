@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import React, {FC, ReactComponentElement} from "react";
 import {FaArrowLeft, FaArrowRight, FaVk} from "react-icons/fa";
-import {Colors} from "../constants";
+import {Colors, DefaultAnimationProps} from "../constants";
+import {motion} from "framer-motion";
 
 export const Hr = styled.hr`
   border: 1px solid ${Colors.dark.normal};
@@ -26,7 +27,12 @@ export const Section: FC<SectionProps> = ({title, children, className}) => {
             <div className="content-container">
                 {title !== undefined && (
                     <>
-                        <h3 className="section-title" style={title.style}>{title.title}</h3>
+                        <h3
+                            className="section-title"
+                            style={title.style}
+                        >
+                            {title.title}
+                        </h3>
                         <Hr/><br/>
                     </>
                 )}
@@ -63,7 +69,7 @@ interface ArrowProps {
     isRight: boolean,
 }
 
-const Div = styled.div`
+const ArrowContainer = styled.div`
   position: absolute;
   margin: 0;
   height: 100%;
@@ -72,7 +78,7 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${Colors.main.normal};
+  color: ${Colors.dark.normal};
   background-color: transparent;
   border: none;
   z-index: 10;
@@ -91,13 +97,16 @@ const Div = styled.div`
 
 export const Arrow: FC<ArrowProps> = ({onClick, isRight}) => {
     return (
-        <Div onClick={onClick} style={isRight ? {right: "0"} : {left: "0"}}>
+        <ArrowContainer
+            onClick={onClick}
+            style={isRight ? {right: "0"} : {left: "0"}}
+        >
             {isRight ? (
                 <FaArrowRight/>
             ) : (
                 <FaArrowLeft/>
             )}
-        </Div>
+        </ArrowContainer>
     );
 }
 
@@ -128,7 +137,7 @@ type LinkProps = {
     style?: React.CSSProperties;
 }
 
-const Container = styled.div`
+const LinksContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,11 +154,11 @@ const Link = styled.a`
 
 export const Links: FC<LinkProps> = ({style}) => {
     return (
-        <Container style={style}>
+        <LinksContainer style={style}>
             <Link href="https://vk.com/panda.detsad33">
                 <FaVk/>
             </Link>
-        </Container>
+        </LinksContainer>
     );
 };
 //endregion

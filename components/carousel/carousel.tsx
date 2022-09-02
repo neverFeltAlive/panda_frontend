@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
 import styled from "styled-components";
-
-import {Arrow, SliderContainer} from "../UI";
-import {Colors, Rems} from "../../constants";
+import {motion} from "framer-motion";
+import {SliderContainer} from "../UI";
+import {Colors, DefaultAnimationProps, Rems} from "../../constants";
 
 //region TSProps
 export interface ImageData {
@@ -94,7 +94,9 @@ const Carousel : FC<{images: ImageData[]}> = ({images}) => {
     return (
         <Wrapper>
             <Container onClickRight={() => {setCurrent(next)}} onClickLeft={() => {setCurrent(previous)}}>
-                <>
+                <motion.div
+                    {...DefaultAnimationProps()}
+                >
                     {images.map((image, index) => {
                         return (
                             <div key={image.id}>
@@ -110,7 +112,7 @@ const Carousel : FC<{images: ImageData[]}> = ({images}) => {
                             </div>
                         )
                     })}
-                </>
+                </motion.div>
             </Container>
         </Wrapper>
     );

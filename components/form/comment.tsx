@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import {Hr} from "../UI";
 import Form, {InputProps} from "./form";
 import {ApiRoot} from "../../constants";
+import {ModalFormProps} from "./appointment";
 
 const items: InputProps[] = [
     {
@@ -23,12 +24,12 @@ const items: InputProps[] = [
     }
 ]
 
-const CommentForm: FC = () => {
+const CommentForm = ({onSubmit}: ModalFormProps): JSX.Element => {
     return (
         <section>
             <h5 className="section-title" style={{textAlign: "center"}}>Оставить комментарий</h5>
             <Hr/>
-            <Form apiEndpoint={`${ApiRoot}/create-comment`} items={items} buttonText="Отправить"/>
+            <Form apiEndpoint={`${ApiRoot}/create-comment`} items={items} buttonText="Отправить" onSubmit={onSubmit}/>
         </section>
     );
 }

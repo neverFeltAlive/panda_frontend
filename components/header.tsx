@@ -2,11 +2,12 @@ import React, {FC} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import styled from "styled-components";
-import {Colors, ContactData, Rems} from "../constants";
+import {Animations, Colors, ContactData, DefaultAnimationProps, DefaultButtonAnimationProps, Rems} from "../constants";
 import ApplicationForm from "./form/application";
 import CallForm from "./form/call";
 import {FaPhoneAlt} from "react-icons/fa";
 import {setModalType} from "../pages/_app";
+import {motion} from "framer-motion";
 
 //region Styled
 const Img = styled.img`
@@ -14,6 +15,7 @@ const Img = styled.img`
   display: none;
 
   @media (min-width: 576px) {
+    display: block;
     width: 40px;
     height: 40px;
   }
@@ -83,6 +85,14 @@ const Button = styled.button`
   margin-left: 10px;
 `;
 
+const ButtonPhone = styled(Button)`
+  border: none;
+  
+  &:hover{
+    border: none;
+  }
+`;
+
 //endregion
 
 interface HeaderProps {
@@ -95,7 +105,13 @@ const Header: FC<HeaderProps> = ({setModal}) => {
     return (
         <header>
             <Wrapper>
-                <Content className="content-container">
+                <Content
+                    as={motion.div}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.9 }}
+                    className="content-container"
+                >
                     <Brand>
                         <Link href="/">
                             <Img
@@ -112,34 +128,66 @@ const Header: FC<HeaderProps> = ({setModal}) => {
                         </Link>
                     </Brand>
                     <Nav>
-                        <Button className="button button__accent" onClick={() => {
-                            setModal(CallForm);
+                        <ButtonPhone
+                            as={motion.button}
+                            {...DefaultButtonAnimationProps()}
+                            className="button button__accent"
+                            onClick={() => {
+                            setModal(<CallForm onSubmit={() => setModal(null)}/>);
                         }}>
                             <FaPhoneAlt/> {ContactData.phoneNumber}
-                        </Button>
-                        <Button className="button button__accent" onClick={() => {
-                            setModal(ApplicationForm)
-                        }}>Оставить заявку
+                        </ButtonPhone>
+                        <Button
+                            as={motion.button}
+                            {...DefaultButtonAnimationProps()}
+                            className="button button__accent"
+                            onClick={() => {
+                            setModal(<ApplicationForm onSubmit={() => {setModal(null)}}/>)
+                        }}>
+                            Оставить заявку
                         </Button>
                     </Nav>
                 </Content>
             </Wrapper>
             <Wrapper>
                 <ContentBottom className="content-container">
-                    <Link href="/about">
-                        <a className={router.pathname === "/about" ? "nav-link nav-link__active" : "nav-link"}>Главная</a>
+                    <Link
+                        href="/about"
+                    >
+                        <motion.a
+                            {...DefaultAnimationProps(0.9)}
+                            {...DefaultButtonAnimationProps()}
+                            className={router.pathname === "/about" ? "nav-link nav-link__active" : "nav-link"}
+                        >
+                            Главная
+                        </motion.a>
                     </Link>
                     <Link href="/details">
-                        <a className={router.pathname === "/details" ? "nav-link nav-link__active" : "nav-link"}>Родителям</a>
+                        <motion.a
+                            {...DefaultAnimationProps(0.6)}
+                            {...DefaultButtonAnimationProps()}
+                            className={router.pathname === "/details" ? "nav-link nav-link__active" : "nav-link"}
+                        >
+                            Родителям
+                        </motion.a>
                     </Link>
                     <Link href="/contacts">
-                        <a className={router.pathname === "/contacts" ? "nav-link nav-link__active" : "nav-link"}>О
-                            нас
-                        </a>
+                        <motion.a
+                            {...DefaultAnimationProps(0.3)}
+                            {...DefaultButtonAnimationProps()}
+                            className={router.pathname === "/contacts" ? "nav-link nav-link__active" : "nav-link"}
+                        >
+                            О нас
+                        </motion.a>
                     </Link>
                     <Link href="/feed">
-                        <a className={router.pathname === "/feed" ? "nav-link nav-link__active" : "nav-link"}>Галерея
-                        </a>
+                        <motion.a
+                            {...DefaultAnimationProps()}
+                            {...DefaultButtonAnimationProps()}
+                            className={router.pathname === "/feed" ? "nav-link nav-link__active" : "nav-link"}
+                        >
+                            Галерея
+                        </motion.a>
                     </Link>
                 </ContentBottom>
             </Wrapper>

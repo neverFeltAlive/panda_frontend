@@ -27,7 +27,7 @@ const About: NextPage<PageProps> = ({setModal}) => {
     return (
         <>
             <Head>
-                <meta name="description" content="Основная информация о частном детском саде 'Панда' во Владимире"/>
+                <meta name="description" content="Основная информация о частном детском саде Панда во Владимире"/>
                 <title>Детский Сад Панда: Главное</title>
             </Head>
             <main>

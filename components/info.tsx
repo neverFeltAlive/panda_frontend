@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
-import {Hr, Section, SectionTitle} from "./UI";
-import {Colors} from "../constants";
+import {Hr} from "./UI";
+import {Colors, DefaultAnimationProps} from "../constants";
 import styled from "styled-components";
 import CallForm from "./form/call";
 import ApplicationForm from "./form/application";
 import Appointment, {AppointmentForm} from "./form/appointment";
+import {motion} from "framer-motion";
+import {setModalType} from "../pages/_app";
 
 //region Styled
 const Div = styled.div`
@@ -23,8 +25,8 @@ const A = styled.a`
   font-size: 1.3rem;
   cursor: pointer;
   text-decoration: underline;
-  
-  &:hover{
+
+  &:hover {
     color: var(--accent-color)
   }
 `;
@@ -33,25 +35,26 @@ const A = styled.a`
 const Span = styled.span`
   font-size: 1.2rem;
 `;
+
 //endregion
 
 interface ParentsInfoProps {
-    setModal: (content: FC) => void;
+    setModal: setModalType;
 }
 
-export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
+export const ParentsInfo = ({setModal} : ParentsInfoProps) => {
     return (
         <>
             <section className="content-section content-section__dark">
                 <Div className="content-container">
-                    <article>
+                    <motion.article {...DefaultAnimationProps()}>
                         <h3 className="section-title">Условия поступления</h3>
                         <Hr/>
                         <p>Набор детей с <Span className="highlight">2</Span> до <Span
                             className="highlight">6.5</Span> лет ведется весь учебный год при наличии свободных мест</p>
-                    </article>
+                    </motion.article>
                     <br/><br/>
-                    <article>
+                    <motion.article {...DefaultAnimationProps(0.3)}>
                         <h3 className="section-title">Наш детский сад предлагает несколько режимов посещения</h3>
                         <Hr/>
                         <ul>
@@ -59,7 +62,7 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
                                 день</Span></p></li>
                             <li><p>С 7:30 до 18:00 – <Span className="highlight">полный день</Span></p></li>
                         </ul>
-                    </article>
+                    </motion.article>
                 </Div>
             </section>
             <div style={{display: "flex"}}>
@@ -71,14 +74,14 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
             </div>
             <section className="content-section content-section__light">
                 <div className="content-container">
-                    <article>
+                    <motion.article {...DefaultAnimationProps(0.3)}>
                         <h3 className="section-title">Что делать, чтобы поступить к нам?</h3>
                         <Hr/>
                         <p>
                             <Strong>Для поступления вы можете&nbsp;
-                                <A onClick={() => setModal(CallForm)}>связаться по телефону</A> или&nbsp;
-                                <A onClick={() => setModal(ApplicationForm)}>оставить заявку онлайн</A>, a также&nbsp;
-                                <A onClick={() => setModal(AppointmentForm)}>записаться на экскурсию.</A>&nbsp;
+                                <A onClick={() => setModal(<CallForm onSubmit={() => {setModal(null)}}/>)}>связаться по телефону</A> или&nbsp;
+                                <A onClick={() => setModal(<ApplicationForm onSubmit={() => {setModal(null)}}/>)}>оставить заявку онлайн</A>, a также&nbsp;
+                                <A onClick={() => setModal(<AppointmentForm onSubmit={() => {setModal(null)}}/>)}>записаться на экскурсию.</A>&nbsp;
                             </Strong>
                             Вам подберут удобное для вас время для ознакомительной
                             экскурсии по детскому саду: спальни,
@@ -90,7 +93,7 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
                             ребенка в
                             новую среду).
                         </p>
-                    </article>
+                    </motion.article>
                 </div>
             </section>
             <div style={{display: "flex"}}>
@@ -102,7 +105,7 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
             </div>
             <section className="content-section">
                 <Div className="content-container">
-                    <article>
+                    <motion.article {...DefaultAnimationProps(0)}>
                         <h3 className="section-title">Для заключения договора о пребывании в детском саду</h3>
                         <h5>родители должны предоставитть следующие документы:</h5>
                         <ul>
@@ -110,13 +113,13 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
                             <li><p>Копию медицинского страхового полиса</p></li>
                             <li><p>Копию документа удостоверяющего личность одного из родителей</p></li>
                             <li><p>Заявление о приеме в детский сад</p></li>
-                            <li><p>Купию СНИЛС</p></li>
+                            <li><p>Копию СНИЛС</p></li>
                             <li><p>Справку от педиатра о состоянии здоровья</p></li>
                             <li><p>Результаты медицинских анализов на энтербиоз и яица глист</p></li>
                         </ul>
-                    </article>
+                    </motion.article>
                     <br/><br/>
-                    <article>
+                    <motion.article {...DefaultAnimationProps(0.3)}>
                         <h3 className="section-title">Правила посещения детского сада</h3>
                         <Hr/>
                         <ul>
@@ -129,7 +132,7 @@ export const ParentsInfo: FC<ParentsInfoProps> = ({setModal}) => {
                                 во
                                 время прогулок</p></li>
                         </ul>
-                    </article>
+                    </motion.article>
                 </Div>
             </section>
         </>
@@ -141,15 +144,15 @@ export const UsInfo: FC = () => {
         <>
             <section className="content-section content-section__dark">
                 <Div className="content-container">
-                    <article>
+                    <motion.article {...DefaultAnimationProps(0)}>
                         <h3 className="section-title">Основные сведения</h3>
                         <Hr/>
                         <p>ИП Федяева Кристина Олеговна</p>
                         <p>дата регистрации: 04.04.2022</p>
 
-                    </article>
+                    </motion.article>
                     <br/><br/>
-                    <article>
+                    <motion.article {...DefaultAnimationProps(0.3)}>
                         <h3 className="section-title">Предмет деятельности</h3>
                         <Hr/>
                         <ul>
@@ -159,7 +162,7 @@ export const UsInfo: FC = () => {
                             <li><p>дополнительное развитие детей в возресте 3 - 7</p></li>
                             <li><p>индивидуальные занятия детей в возресте 3.5 - 7</p></li>
                         </ul>
-                    </article>
+                    </motion.article>
                 </Div>
             </section>
             <div style={{display: "flex"}}>
@@ -171,11 +174,11 @@ export const UsInfo: FC = () => {
             </div>
             <section className="content-section content-section__light">
                 <div className="content-container">
-                    <article>
+                    <motion.article {...DefaultAnimationProps(0)}>
                         <h3 className="section-title">Место нахождения</h3>
                         <Hr/>
                         <p>Россия, город Владимир, улица Верхне-Лыбедская, 18А</p>
-                    </article>
+                    </motion.article>
                 </div>
             </section>
             <div style={{display: "flex"}}>

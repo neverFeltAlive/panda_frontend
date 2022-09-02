@@ -7,6 +7,7 @@ import {Colors, ContactData, Rems} from "../constants";
 import CommentForm from "./form/comment";
 import ApplicationForm from "./form/application";
 import CallForm from "./form/call";
+import {setModalType} from "../pages/_app";
 
 //region Styled
 const Wrapper = styled.footer`
@@ -85,7 +86,7 @@ const A = styled.a`
 //endregion
 
 interface FooterProps {
-    setModal: (content: FC) => void,
+    setModal: setModalType,
 }
 
 const Footer: FC<FooterProps> = ({setModal}) => {
@@ -119,22 +120,22 @@ const Footer: FC<FooterProps> = ({setModal}) => {
                                 <A>О нас</A>
                             </Link><br/>
                             <Link href="/feed">
-                                <A>Галлерея</A>
+                                <A>Галерея</A>
                             </Link><br/>
                         </div>
                         <div>
                             <Button onClick={() => {
-                                setModal(CallForm)
+                                setModal(<CallForm onSubmit={() => {setModal(null)}}/>)
                             }}>
                                 Заказать звонок
                             </Button><br/>
                             <Button onClick={() => {
-                                setModal(CommentForm)
+                                setModal(<CommentForm onSubmit={() => {setModal(null)}}/>)
                             }}>
                                 Оставить отзыв
                             </Button><br/>
                             <Button onClick={() => {
-                                setModal(ApplicationForm)
+                                setModal(<ApplicationForm onSubmit={() => {setModal(null)}}/>)
                             }}>
                                 Оставить заявку
                             </Button><br/>

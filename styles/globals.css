@@ -14,7 +14,7 @@
     --accent-color: rgba(62, 230, 70, 1);
     --accent-color-transparent: rgba(62, 230, 70, 0.2);
 
-    --border-width: 0.15rem;
+    --border-width: 0.1rem;
 }
 
 /*<editor-fold desc="Generic">*/
@@ -121,13 +121,17 @@ strong {
 
 .highlight {
     color: var(--accent-color);
-    text-shadow: 1px 1px var(--dark-color);
     font-family: 'Rubik Bubbles', cursive;
+    text-shadow: 1px 1px var(--dark-color);
     font-size: 1.2em;
 }
 
 .highlight__light {
     color: var(--light-color)
+}
+
+.highlight__shadow {
+    text-shadow: 0 0 0.5rem var(--dark-color);
 }
 
 #globalLoader {
@@ -312,7 +316,7 @@ select.input option{
     }
 
     .nav-link{
-        margin: 10px 40px;
+        margin: 0 40px;
     }
 }
 

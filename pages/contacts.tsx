@@ -8,7 +8,7 @@ const Contacts: NextPage<PageProps> = () => {
     return (
         <>
             <Head>
-                <meta name="description" content="Контакты предприятия и персонала частного детского сада 'Панда' во Владимире"/>
+                <meta name="description" content="Контакты предприятия и персонала частного детского сада Панда во Владимире"/>
                 <title>Детский Сад Панда: Контактная Информация</title>
             </Head>
             <main>

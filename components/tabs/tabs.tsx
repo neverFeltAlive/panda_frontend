@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Hr, Section, SectionTitle} from "../UI";
 import styled from "styled-components";
-import {Colors, Rems} from "../../constants";
+import {Colors, DefaultAnimationProps, Rems} from "../../constants";
+import {motion} from "framer-motion";
 
 //region TSProps
 export interface Tab {
@@ -84,7 +85,10 @@ const Tabs = ({title, tabs}: TabsProps) => {
                 <h3 className="section-title">{title}</h3>
                 <Hr/>
                 <Container>
-                    <TitlesContainer>
+                    <TitlesContainer
+                        as={motion.div}
+                        {...DefaultAnimationProps()}
+                    >
                         <div>
                             {tabs.map((tab, index) => {
                                 if (current === index) {
@@ -103,7 +107,10 @@ const Tabs = ({title, tabs}: TabsProps) => {
                             })}
                         </div>
                     </TitlesContainer>
-                    <TextContainer>
+                    <TextContainer
+                        as={motion.div}
+                        {...DefaultAnimationProps(0.3)}
+                    >
                         {tabs.map((tab, index) => {
                             if (current === index) {
                                 return (
@@ -116,7 +123,6 @@ const Tabs = ({title, tabs}: TabsProps) => {
                     </TextContainer>
                 </Container>
             </div>
-
         </section>
     );
 };

@@ -94,7 +94,7 @@ const Gram: FC<GramProps> = ({images, setViewer}) => {
 
     useEffect(() => {
         setMore(activeImages.length > offset * currentPage);
-    }, [activeImages]);
+    }, [activeImages, currentPage]);
 
     const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();

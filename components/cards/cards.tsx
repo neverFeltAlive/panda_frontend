@@ -2,7 +2,8 @@ import React, {FC, useState} from 'react';
 
 import {Hr, SectionTitle, Section, Arrow, SliderContainer} from "../UI";
 import styled from "styled-components";
-import {Colors, Rems} from "../../constants";
+import {Colors, DefaultAnimationProps, Rems} from "../../constants";
+import {motion} from "framer-motion";
 
 //region TSProps
 export interface Image {
@@ -129,13 +130,21 @@ const Cards: FC<CardsProps> = ({cards, title}) => {
 
                         if (index === 1) {
                             return (
-                                <Wrapper key={card.id}>
+                                <Wrapper
+                                    as={motion.div}
+                                    {...DefaultAnimationProps(0.8)}
+                                    key={card.id}
+                                >
                                     {body}
                                 </Wrapper>
                             );
                         } else {
                             return (
-                                <WrapperSide key={card.id}>
+                                <WrapperSide
+                                    as={motion.div}
+                                    {...DefaultAnimationProps()}
+                                    key={card.id}
+                                >
                                     {body}
                                 </WrapperSide>
                             );

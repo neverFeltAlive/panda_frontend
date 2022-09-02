@@ -2,8 +2,10 @@ import React, {FC} from 'react';
 import {Hr} from "./UI";
 import {FaRegCommentAlt} from "react-icons/fa";
 import styled from "styled-components";
-import {Colors, Rems} from "../constants";
+import {Colors, DefaultAnimationProps, Rems} from "../constants";
 import CommentForm from "./form/comment";
+import {motion} from "framer-motion";
+import {setModalType} from "../pages/_app";
 
 //region Styled
 const Section = styled.section`
@@ -47,7 +49,6 @@ const Article = styled.article`
 
 const ArticleEven = styled(Article)`
   box-shadow: 0 0 1rem ${Colors.accent.normal};
-  background-color: ${Colors.light.transparent};
   text-align: center;
 
   @media (min-width: 992px) {
@@ -79,13 +80,13 @@ const Button = styled.button`
 //endregion
 
 interface CommentsProps {
-    setModal: (content: FC) => void,
+    setModal: setModalType,
 }
 
 const Comments: FC<CommentsProps> = ({setModal}) => {
 
     const onClick = () => {
-        setModal(CommentForm);
+        setModal(<CommentForm/>);
     }
 
     return (
@@ -96,7 +97,10 @@ const Comments: FC<CommentsProps> = ({setModal}) => {
                 <Hr/>
                 <Container className="content-container">
                     <Column>
-                        <Article>
+                        <Article
+                            as={motion.article}
+                            {...DefaultAnimationProps()}
+                        >
                             <strong>ПАПА</strong>
                             <h6><span className="highlight">Виктор</span></h6>
                             <strong>АВГ, 2022</strong>
@@ -105,7 +109,10 @@ const Comments: FC<CommentsProps> = ({setModal}) => {
                                 Внимательный
                                 персонал. Доброе, уважительное, заботливое отношение. Спасибо вам огромное</p>
                         </Article>
-                        <ArticleEven>
+                        <ArticleEven
+                            as={motion.article}
+                            {...DefaultAnimationProps(0.3)}
+                        >
                             <strong>МАМА</strong>
                             <h6><span className="highlight">Дарья</span></h6>
                             <strong>АВГ, 2022</strong>
@@ -114,7 +121,10 @@ const Comments: FC<CommentsProps> = ({setModal}) => {
                                 счастлив :)</p>
                         </ArticleEven>
                     </Column>
-                    <ArticleBig>
+                    <ArticleBig
+                        as={motion.article}
+                        {...DefaultAnimationProps(0.6)}
+                    >
                         <strong>ВОСПИТАТЕЛЬ</strong>
                         <h6><span className="highlight">Валентина</span></h6>
                         <strong>СЕНТ, 2022</strong>

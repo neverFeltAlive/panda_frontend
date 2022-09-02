@@ -2,7 +2,8 @@ import React from 'react';
 import {Hr, Section, SectionTitle} from "../UI";
 import styled from "styled-components";
 import {Image} from "../cards/cards";
-import {Colors} from "../../constants";
+import {Colors, DefaultAnimationProps} from "../../constants";
+import {motion} from "framer-motion";
 
 //region TSProps
 export interface Area {
@@ -55,7 +56,7 @@ const TextContainer = styled.div`
 
 const ImageContainer = styled.div`
   display: none;
-  width: 680px;
+  width: 250px;
   justify-content: center;
 
   @media (min-width: 992px) {
@@ -83,7 +84,10 @@ const Areas = ({title, areas}: AreasProps) => {
     return (
         <Section title={sectionTitle}>
             <Container>
-                <ImageContainer>
+                <ImageContainer
+                    as={motion.div}
+                    {...DefaultAnimationProps()}
+                >
                     <ImageLine>
                         <Img
                             src={areas[0].image.src}
@@ -108,7 +112,10 @@ const Areas = ({title, areas}: AreasProps) => {
                                 {index !== 0 && (
                                     <Hr/>
                                 )}
-                                <Card>
+                                <Card
+                                    as={motion.article}
+                                    {...DefaultAnimationProps()}
+                                >
                                     <Strong>{area.type}</Strong>
                                     <h4>{area.title}</h4>
                                     <p>{area.text}</p>
@@ -120,7 +127,9 @@ const Areas = ({title, areas}: AreasProps) => {
                 </TextContainer>
             </Container>
             <br/><br/>
-            <div>
+            <motion.div
+                {...DefaultAnimationProps()}
+            >
                 <Strong>АКТИВНОСТИ</Strong>
                 <h4 >Выбранное вами направление можно дополнить различными
                     активностями</h4>
@@ -145,7 +154,7 @@ const Areas = ({title, areas}: AreasProps) => {
                         <strong>Занятия с логопедом</strong>
                     </li>
                 </ul>
-            </div>
+            </motion.div>
         </Section>
     );
 };

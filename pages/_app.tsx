@@ -9,12 +9,13 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Viewer from "../components/viewer";
 import {ImageData} from "../components/carousel/carousel";
+import FloatingButton from "../components/float";
 
 export type setViewerType = (images: ImageData[], currentId: number) => void;
-export type setModalType = (content: FC) => void;
+export type setModalType = (content: null | JSX.Element) => void;
 
 export default function MyApp({Component, pageProps}: AppProps) {
-    const [modalContent, setModalContent] = useState<null | FC>(null)
+    const [modalContent, setModalContent] = useState<null | JSX.Element>(null)
     const [overlay, setOverlay]  = useState<null | JSX.Element>(null);
     const router = useRouter();
     const needHeader = router.pathname === "/about" || router.pathname === "/details" || router.pathname === "/contacts" || router.pathname === "/feed";
@@ -54,8 +55,11 @@ export default function MyApp({Component, pageProps}: AppProps) {
             <Background/>
             {overlay && overlay}
             {needHeader && (
-                <Header setModal={setModal}/>
-            )}
+                <>
+                    <Header setModal={setModal}/>
+                    <FloatingButton setModal={setModal}/>
+                </>
+                )}
             <Component {...pageProps} setModal={setModal} setViewer={setViewer}/>
             {needHeader && (
                 <Footer setModal={setModal}/>

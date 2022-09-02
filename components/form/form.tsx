@@ -46,19 +46,20 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 interface FormProps {
     items: (InputProps | SelectProps)[],
     buttonText: string,
-    apiEndpoint: string
+    apiEndpoint: string,
+    onSubmit: () => void,
 }
 
 type State = { [key: string]: string };
 
-const Form: FC<FormProps> = ({apiEndpoint, items, buttonText}): JSX.Element => {
+const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.Element => {
     const defaultValues: State = {};
 
     useEffect(() => {
         for (let i: number = 0; i < items.length; i++) {
             defaultValues[items[i].name] = "";
         }
-    }, [items]);
+    }, [items, defaultValues]);
 
     const [values, setValues] = useState(defaultValues);
     const [errors, setErrors] = useState<null | { [key: string]: string | null }>(null)
@@ -92,6 +93,8 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText}): JSX.Element => {
             catch(error){
                 console.log(error);
             }
+
+            alert(onSubmit);
         }
     }
 

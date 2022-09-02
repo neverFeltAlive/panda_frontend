@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import {Hr} from "../UI";
 import Form, {InputProps} from "./form";
 import {ApiRoot} from "../../constants";
+import {ModalFormProps} from "./appointment";
 
 const items: InputProps[] = [
     {
@@ -25,12 +26,12 @@ const items: InputProps[] = [
     },
 ]
 
-const CallForm : FC = () => {
+const CallForm = ({onSubmit}: ModalFormProps): JSX.Element => {
     return (
         <section className="content-section">
             <h5 className="section-title" style={{textAlign: "center"}}>Заказать звонок</h5>
             <Hr/>
-            <Form apiEndpoint={`${ApiRoot}/create-phone-request`} items={items} buttonText="Отправить"/>
+            <Form apiEndpoint={`${ApiRoot}/create-phone-request`} items={items} buttonText="Отправить" onSubmit={onSubmit}/>
         </section>
     );
 };

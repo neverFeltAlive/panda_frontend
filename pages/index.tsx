@@ -7,11 +7,6 @@ import {Colors} from "../constants";
 
 //region Styled
 const Wrapper = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: ${Colors.main.transparent};
   background-image: url("/images/logo-mask.png");
   background-position: center;
@@ -31,6 +26,16 @@ const Section = styled.section`
   }
 `;
 
+const MiddleGround = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${Colors.dark.transparent};
+  
+`;
+
 const Space = styled(Hr)`
   margin: 30px;
 `;
@@ -45,18 +50,20 @@ const Home: NextPage = () => {
             </Head>
             <main>
                 <Wrapper>
-                    <Section>
-                        <h2>Частный</h2>
-                        <h1>Детский Сад <span className="highlight">Панда</span></h1>
-                        <h6>Лучший детский сад со спортивным уклоном, речевым развитием и заботой о каждом ребёнке во
-                            Владимире.</h6>
-                        <Space/>
-                        <Link href="/about">
-                            <button className="button">
-                                Узнать подробнее
-                            </button>
-                        </Link>
-                    </Section>
+                    <MiddleGround>
+                        <Section>
+                            <h2>Частный</h2>
+                            <h1>Детский Сад <span className="highlight highlight__shadow">Панда</span></h1>
+                            <h6>Лучший детский сад со спортивным уклоном, речевым развитием и заботой о каждом ребёнке во
+                                Владимире.</h6>
+                            <Space/>
+                            <Link href="/about">
+                                <button className="button button__accent">
+                                    Узнать подробнее
+                                </button>
+                            </Link>
+                        </Section>
+                    </MiddleGround>
                 </Wrapper>
             </main>
         </>

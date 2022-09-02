@@ -27,6 +27,15 @@ const CardsData: Card[] = [
             src: "/images/desert.jpg",
             alt: "",
         }
+    },
+    {
+        id: 3,
+        title: "Индивидуальность",
+        text: "Наши отзывчивые работники найдут подход к любому ребёнку и его родителям.",
+        image: {
+            src: "/images/desert.jpg",
+            alt: "",
+        }
     }
 ];
 

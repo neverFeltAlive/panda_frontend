@@ -3,6 +3,7 @@ import {Hr} from "../UI";
 import Form, {InputProps, SelectProps} from "./form";
 import {Simulate} from "react-dom/test-utils";
 import {ApiRoot} from "../../constants";
+import {ModalFormProps} from "./appointment";
 
 const items: (InputProps | SelectProps)[] = [
     {
@@ -59,12 +60,12 @@ const items: (InputProps | SelectProps)[] = [
     }
 ]
 
-const ApplicationForm: FC = () => {
+const ApplicationForm = ({onSubmit} : ModalFormProps): JSX.Element => {
     return (
         <section>
             <h5 className="section-title" style={{textAlign: "center"}}>Оставить заявку</h5>
             <Hr/>
-            <Form apiEndpoint={`${ApiRoot}/create-application`} items={items} buttonText="Отправить"/>
+            <Form apiEndpoint={`${ApiRoot}/create-application`} items={items} buttonText="Отправить" onSubmit={onSubmit}/>
         </section>
     );
 }

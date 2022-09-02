@@ -2,7 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import {Hr} from "./UI";
 import {FullscreenControl, GeolocationControl, Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
-import {Colors} from "../constants";
+import {Colors, DefaultAnimationProps} from "../constants";
+import {motion} from "framer-motion";
 
 //region Styled
 const Section = styled.section`
@@ -66,7 +67,10 @@ const MapBox = () => {
             <h3 className="section-title">как нас найти</h3>
             <Hr/>
             <Container>
-                <MapContainer>
+                <MapContainer
+                    as={motion.div}
+                    {...DefaultAnimationProps()}
+                >
                     <YMaps>
                         <Map
                             defaultState={{
@@ -85,15 +89,24 @@ const MapBox = () => {
                     </YMaps>
                 </MapContainer>
                 <TextContainer>
-                    <Article>
+                    <Article
+                        as={motion.article}
+                        {...DefaultAnimationProps(0.3)}
+                    >
                         <p><strong style={{fontWeight: "inherit"}}>Садик Панда</strong> расположен в центре города <Strong>недалеко от здания областной
                             админимтрации</Strong>.
                         </p>
                     </Article>
-                    <Article>
+                    <Article
+                        as={motion.article}
+                        {...DefaultAnimationProps(0.6)}
+                    >
                         <p>Наш адрес: <Strong>г.Владимир, ул. Верхне-Лыбедская, 18A</Strong></p>
                     </Article>
-                    <Article>
+                    <Article
+                        as={motion.article}
+                        {...DefaultAnimationProps(0.9)}
+                    >
                         <p>В шаговой доступности находится:</p>
                         <ul>
                             <li><p>удобная <Strong>парковка</Strong></p></li>

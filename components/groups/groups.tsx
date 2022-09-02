@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import {Image} from "../cards/cards";
-import {Colors} from "../../constants";
+import {Animations, Colors, DefaultAnimationProps, Rems} from "../../constants";
+import {motion} from "framer-motion";
 
 //region TSProps
 export interface Group {
@@ -37,18 +38,16 @@ const Card = styled.article`
   width: 33%;
   height: 8rem;
   margin: 0;
-  border: 0.15rem solid ${Colors.accent.normal};
+  border: ${Rems.border} solid ${Colors.accent.normal};
   box-shadow: 0 0 1rem ${Colors.accent.normal};
   background-color: ${Colors.white.normal};
   border-radius: 50%;
   z-index: 3;
-  scale: 0.9;
   
   &:hover{
     z-index: 4;
     border: 2px solid ${Colors.main.normal};
     box-shadow: 0 0 1rem ${Colors.main.normal};
-    scale: 1;
   }
   
   @media (min-width: 992px){
@@ -90,15 +89,27 @@ const Groups = ({title, groups}: GroupsProps) => {
                         </div>
                     );
 
+                    const delay = index / 4;
+
                     if (index % 2 === 0) {
                         return (
-                            <CardEven key={group.id}>
+                            <CardEven
+                                as={motion.article}
+                                {...DefaultAnimationProps(delay)}
+                                whileHover={Animations.hoverAnimation(1.05)}
+                                key={group.id}
+                            >
                                 {body}
                             </CardEven>
                         );
                     } else {
                         return (
-                            <Card key={group.id}>
+                            <Card
+                                as={motion.article}
+                                key={group.id}
+                                whileHover={Animations.hoverAnimation(1.05)}
+                                {...DefaultAnimationProps(delay)}
+                            >
                                 {body}
                             </Card>
                         );
