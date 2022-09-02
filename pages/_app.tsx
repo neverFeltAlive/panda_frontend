@@ -10,6 +10,7 @@ import Footer from "../components/footer";
 import Viewer from "../components/viewer";
 import {ImageData} from "../components/carousel/carousel";
 import FloatingButton from "../components/float";
+import {AnimatePresence} from "framer-motion";
 
 export type setViewerType = (images: ImageData[], currentId: number) => void;
 export type setModalType = (content: null | JSX.Element) => void;
@@ -32,6 +33,9 @@ export default function MyApp({Component, pageProps}: AppProps) {
         if (modalContent){
             setOverlay(<Modal closeModal={removeOverlay} content={modalContent}/>)
         }
+        else{
+            removeOverlay();
+        }
     }, [modalContent])
 
     const removeOverlay = () => {
@@ -53,7 +57,10 @@ export default function MyApp({Component, pageProps}: AppProps) {
     return (
         <>
             <Background/>
-            {overlay && overlay}
+            <AnimatePresence>
+                {overlay && overlay}
+            </AnimatePresence>
+
             {needHeader && (
                 <>
                     <Header setModal={setModal}/>

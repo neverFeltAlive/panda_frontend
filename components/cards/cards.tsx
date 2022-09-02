@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 
 import {Hr, SectionTitle, Section, Arrow, SliderContainer} from "../UI";
 import styled from "styled-components";
-import {Colors, DefaultAnimationProps, Rems} from "../../constants";
+import {Animations, Colors, DefaultAnimationProps, Rems} from "../../constants";
 import {motion} from "framer-motion";
 
 //region TSProps
@@ -109,6 +109,8 @@ const Cards: FC<CardsProps> = ({cards, title}) => {
 
     const active = [cards[previous], cards[current], cards[next]];
 
+    const extendedInitialState = {...Animations.initialState, ...{zIndex: 4, opacity: 0.5} }
+
     return (
         <Section title={sectionTitle} className="content-section__light">
             <Container onClickRight={() => {
@@ -132,7 +134,8 @@ const Cards: FC<CardsProps> = ({cards, title}) => {
                             return (
                                 <Wrapper
                                     as={motion.div}
-                                    {...DefaultAnimationProps(0.8)}
+                                    {...DefaultAnimationProps()}
+                                    initial={extendedInitialState}
                                     key={card.id}
                                 >
                                     {body}

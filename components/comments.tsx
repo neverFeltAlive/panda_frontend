@@ -22,7 +22,7 @@ const Container = styled.div`
   display: block;
   justify-content: center;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     display: flex;
   }
 `;
@@ -40,7 +40,7 @@ const Article = styled.article`
     border-color: ${Colors.dark.normal};
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     text-align: left;
     padding: 20px;
     margin: 20px;
@@ -51,7 +51,7 @@ const ArticleEven = styled(Article)`
   box-shadow: 0 0 1rem ${Colors.accent.normal};
   text-align: center;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     text-align: right;
   }
 `;
@@ -59,13 +59,13 @@ const ArticleEven = styled(Article)`
 const ArticleBig = styled(Article)`
   text-align: center;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     max-width: 25%;
   }
 `;
 
 const Column = styled.div`
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     padding: 0 50px 0 0;
     width: 70%;
   }

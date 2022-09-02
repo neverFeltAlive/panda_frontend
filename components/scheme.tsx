@@ -78,7 +78,7 @@ const Scheme = () => {
                 animate={Animations.slideInAnimation()}
                 exit={Animations.slideOutAnimation()}
             >
-                <Strong>отдельно стоящий коттедж</Strong> с огражденной территорией, где каждый ребёнок находится не
+                <Strong>отдельно стоящий коттедж</Strong> с закрытой территорией, где каждый ребёнок находится не
                 только в комфорте, но и в полной безопасности.
             </motion.p>
         ),
@@ -88,7 +88,7 @@ const Scheme = () => {
                 animate={Animations.slideInAnimation()}
                 exit={Animations.slideOutAnimation()}
             >
-                <Strong>собственная кухня</Strong> и <Strong>хорошо проработанным меню</Strong>, способное удовлетворить
+                <Strong>собственная кухня</Strong> с <Strong>разработанным меню</Strong>, способное удовлетворить
                 любые желания и потребности даже самых привередливых малышей.
             </motion.p>
         ),

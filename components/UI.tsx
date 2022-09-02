@@ -67,13 +67,13 @@ export const Transition: FC<TransitionProps> = (props) => {
 interface ArrowProps {
     onClick: React.MouseEventHandler
     isRight: boolean,
+    style?: {[key: string]: string}
 }
 
 const ArrowContainer = styled.div`
   position: absolute;
   margin: 0;
   height: 100%;
-  padding: 0;
   font-size: 2rem;
   display: flex;
   justify-content: center;
@@ -95,11 +95,13 @@ const ArrowContainer = styled.div`
   }
 `;
 
-export const Arrow: FC<ArrowProps> = ({onClick, isRight}) => {
+export const Arrow: FC<ArrowProps> = ({onClick, isRight, style}) => {
+    style = isRight ? {right: "0", ...style} : {left: "0", ...style}
+
     return (
         <ArrowContainer
             onClick={onClick}
-            style={isRight ? {right: "0"} : {left: "0"}}
+            style={style}
         >
             {isRight ? (
                 <FaArrowRight/>
@@ -118,14 +120,15 @@ interface SliderContainerProps {
     onClickLeft: () => void,
     children: JSX.Element,
     className?: string,
+    arrowsStyle?: {[key: string]: string}
 }
 
 
 export const SliderContainer: FC<SliderContainerProps> = ({children, ...props}) => {
     return (
         <div className={props.className}>
-            <Arrow isRight={false} onClick={props.onClickLeft}/>
-            <Arrow isRight={true} onClick={props.onClickRight}/>
+            <Arrow isRight={false} onClick={props.onClickLeft} style={props.arrowsStyle ?  props.arrowsStyle : {}}/>
+            <Arrow isRight={true} onClick={props.onClickRight} style={props.arrowsStyle ?  props.arrowsStyle : {}}/>
             {children}
         </div>
     )

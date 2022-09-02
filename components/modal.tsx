@@ -12,8 +12,8 @@ export const OverlayWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
   z-index: 20;
@@ -59,27 +59,35 @@ export interface OverlayProps {
 }
 
 const Modal: FC<OverlayProps> = ({closeModal, content}) => {
-    return ReactDOM.createPortal(
-        (
-            <OverlayWrapper onClick={(event) => {
+    return (
+        <OverlayWrapper
+            onClick={(event: React.MouseEvent<HTMLDivElement>) => {
                 event.stopPropagation();
                 closeModal();
-            }}>
-                <Container onClick={(event) => {
+            }}
+            as={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <Container
+                onClick={(event:React.MouseEvent<HTMLSelectElement>) => {
                     event.stopPropagation();
-                }}>
-                    <>
-                        <Cross onClick={(event) => {
-                            closeModal()
-                        }}/>
-                        <br/>
-                        {content}
-                    </>
-                </Container>
-            </OverlayWrapper>
-        ),
-        document.getElementById("modal") as HTMLElement
-    )
+                }}
+                as={motion.section}
+                animate={Animations.slideInAnimation()}
+                exit={Animations.slideOutAnimation()}
+            >
+                <>
+                    <Cross onClick={(event) => {
+                        closeModal()
+                    }}/>
+                    <br/>
+                    {content}
+                </>
+            </Container>
+        </OverlayWrapper>
+    );
 };
 
 export default Modal;

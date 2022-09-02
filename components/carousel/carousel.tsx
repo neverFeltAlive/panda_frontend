@@ -1,8 +1,9 @@
 import React, {FC, useState} from 'react';
 import styled from "styled-components";
-import {motion} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import {SliderContainer} from "../UI";
-import {Colors, DefaultAnimationProps, Rems} from "../../constants";
+import {Animations, Colors, DefaultAnimationProps, Rems} from "../../constants";
+import {setViewerType} from "../../pages/_app";
 
 //region TSProps
 export interface ImageData {
@@ -81,7 +82,12 @@ const ImageTitle = styled.h4`
 `;
 //endregion
 
-const Carousel : FC<{images: ImageData[]}> = ({images}) => {
+interface CarouselProps {
+    images: ImageData[],
+    setViewer?: setViewerType,
+}
+
+const Carousel : FC<CarouselProps> = ({images, setViewer}) => {
     const [current, setCurrent] = useState(0);
     const length = images.length;
 
@@ -93,25 +99,42 @@ const Carousel : FC<{images: ImageData[]}> = ({images}) => {
 
     return (
         <Wrapper>
-            <Container onClickRight={() => {setCurrent(next)}} onClickLeft={() => {setCurrent(previous)}}>
+            <Container
+                onClickRight={() => {setCurrent(next)}} onClickLeft={() => {setCurrent(previous)}}
+                arrowsStyle={{padding: "0.5rem"}}
+            >
                 <motion.div
                     {...DefaultAnimationProps()}
                 >
-                    {images.map((image, index) => {
-                        return (
-                            <div key={image.id}>
-                                {index === current && (
-                                    <>
-                                        <Img src={image.image} alt={image.text}></Img>
-                                        <ImageDiv>
-                                            <ImageTitle>{image.title}</ImageTitle>
-                                            <ImageText>{image.text}</ImageText>
-                                        </ImageDiv>
-                                    </>
-                                )}
-                            </div>
-                        )
-                    })}
+                    <AnimatePresence>
+                        {images.map((image, index) => {
+                            return (
+                                <motion.div
+                                    animate={Animations.slideInAnimation()}
+                                    exit={Animations.slideOutAnimation()}
+                                    key={image.id}
+                                >
+                                    {index === current && (
+                                        <>
+                                            <Img
+                                                src={image.image}
+                                                alt={image.text}
+                                                onClick={() => {
+                                                    if (setViewer !== undefined){
+                                                        setViewer(images, index);
+                                                    }
+                                                }}
+                                            />
+                                            <ImageDiv>
+                                                <ImageTitle>{image.title}</ImageTitle>
+                                                <ImageText>{image.text}</ImageText>
+                                            </ImageDiv>
+                                        </>
+                                    )}
+                                </motion.div>
+                            )
+                        })}
+                    </AnimatePresence>
                 </motion.div>
             </Container>
         </Wrapper>

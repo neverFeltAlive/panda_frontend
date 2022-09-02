@@ -17,13 +17,14 @@ import GroupsData from "../components/groups/data";
 import CarouselData from "../components/carousel/data";
 import {Colors} from "../constants";
 import {Transition} from "../components/UI";
-import {setModalType} from "./_app";
+import {setModalType, setViewerType} from "./_app";
 
 export interface PageProps {
     setModal: setModalType,
+    setViewer: setViewerType
 }
 
-const About: NextPage<PageProps> = ({setModal}) => {
+const About: NextPage<PageProps> = ({setModal, setViewer}) => {
     return (
         <>
             <Head>
@@ -42,7 +43,7 @@ const About: NextPage<PageProps> = ({setModal}) => {
                 <Areas title="наши направления" areas={AreasData}/>
                 <MapBox/>
                 <Tabs title="частный садик панда гарантирует" tabs={TabsData}/>
-                <Carousel images={CarouselData}/>
+                <Carousel images={CarouselData} setViewer={setViewer}/>
                 <Appointment/>
             </main>
         </>
@@ -51,13 +52,6 @@ const About: NextPage<PageProps> = ({setModal}) => {
 
 export default About;
 
-// TODO: animations
-// TODO: remake tabs component's styling
-// TODO: create multiple interactions
-// TODO: finish header (offcanvas header)
 // TODO: clean up TS
-// TODO: clean up CSS and styled components
 // TODO: clean up duplicates
-// TODO: email validation
-
-
+// TODO: check responsiveness and browser support

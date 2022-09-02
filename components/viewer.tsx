@@ -1,22 +1,23 @@
 import React, {FC, useState} from 'react';
 import styled from "styled-components";
 import ReactDOM from "react-dom";
-import {Colors} from "../constants";
+import {Animations, Colors} from "../constants";
 import {OverlayWrapper} from "./modal";
 import {ImageData} from "./carousel/carousel";
 import {SliderContainer} from "./UI";
 import {FaTimes} from "react-icons/fa";
+import {AnimatePresence, motion} from "framer-motion";
 
 //region Styled
 const Wrapper = styled(OverlayWrapper)`
-  background-color: ${Colors.dark.transparent};
+  background-color: ${Colors.white.transparent};
 `;
 
 const Container = styled(SliderContainer)`
   z-index: 21;
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   justify-content: space-between;
 `;
 
@@ -29,16 +30,16 @@ const ImgDiv = styled.div`
 const Img = styled.img`
   max-height: 200px;
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     max-height: 300px;
   }
-  @media (min-width: 992px){
+  @media (min-width: 992px) {
     max-height: 500px;
   }
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     max-height: 650px;
   }
-  @media (min-width: 1700px){
+  @media (min-width: 1700px) {
     max-height: 800px;
   }
 `;
@@ -54,10 +55,11 @@ const Cross = styled.div`
   padding: 1rem;
   color: ${Colors.main.normal};
 
-  &:hover{
+  &:hover {
     color: ${Colors.accent.normal};
   }
 `;
+
 //endregion
 
 interface ViewerProps {
@@ -79,26 +81,38 @@ const Viewer: FC<ViewerProps> = ({closeViewer, images, currentId}) => {
     return ReactDOM.createPortal(
         (
             <Wrapper>
-                <Container onClickRight={() => {
-                    setCurrent(next)
-                }} onClickLeft={() => {
-                    setCurrent(previous)
-                }}>
+                <Container
+                    onClickRight={() => {
+                        setCurrent(next)
+                    }}
+                    onClickLeft={() => {
+                        setCurrent(previous)
+                    }}
+                    arrowsStyle={{padding: "2rem"}}
+                >
                     <>
-                        {images.map((image, index) => {
-                            if (index === current) {
-                                return (
-                                    <ImgDiv key={index} onClick={() => {
-                                        closeViewer();
-                                    }}>
-                                        <Cross>
-                                            <FaTimes/>
-                                        </Cross>
-                                        <Img src={image.image} alt={image.text}/>
-                                    </ImgDiv>
-                                );
-                            }
-                        })}
+                        <AnimatePresence>
+                            {images.map((image, index) => {
+                                if (index === current) {
+                                    return (
+                                        <ImgDiv
+                                            key={index}
+                                            onClick={() => {
+                                                closeViewer();
+                                            }}
+                                            as={motion.div}
+                                            animate={Animations.slideInAnimation()}
+                                            exit={Animations.slideOutAnimation()}
+                                        >
+                                            <Cross>
+                                                <FaTimes/>
+                                            </Cross>
+                                            <Img src={image.image} alt={image.text}/>
+                                        </ImgDiv>
+                                    );
+                                }
+                            })}
+                        </AnimatePresence>
                     </>
                 </Container>
             </Wrapper>

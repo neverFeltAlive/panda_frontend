@@ -1,5 +1,6 @@
 import Document, {DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript} from 'next/document'
 import React, {ReactElement} from "react";
+import {AnimatePresence} from "framer-motion";
 
 class MyDocument extends Document {
     static async getInitialProps(
