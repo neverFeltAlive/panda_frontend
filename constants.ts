@@ -34,6 +34,7 @@ export const ContactData = {
     phoneNumber: "+7 (492) 246-06-06",
     vkLink: "",
     email: "panda-kids33@yandex.ru",
+    waLink: "https://wa.me/79042593949",
     address: {
         short: "Владимир, Верхне-Лыбедская 18А",
         long: ""

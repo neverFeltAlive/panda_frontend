@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, {FC, ReactComponentElement} from "react";
-import {FaArrowLeft, FaArrowRight, FaVk} from "react-icons/fa";
+import {FaArrowLeft, FaArrowRight, FaVk, FaWhatsapp} from "react-icons/fa";
 import {Colors, ContactData, DefaultAnimationProps} from "../constants";
 import {motion} from "framer-motion";
 
@@ -160,6 +160,9 @@ export const Links: FC<LinkProps> = ({style}) => {
         <LinksContainer style={style}>
             <Link href={ContactData.vkLink}>
                 <FaVk/>
+            </Link>
+            <Link href={ContactData.waLink}>
+                <FaWhatsapp/>
             </Link>
         </LinksContainer>
     );
