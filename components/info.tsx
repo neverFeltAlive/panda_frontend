@@ -58,9 +58,9 @@ export const ParentsInfo = ({setModal} : ParentsInfoProps) => {
                         <h3 className="section-title">Наш детский сад предлагает несколько режимов посещения</h3>
                         <Hr/>
                         <ul>
-                            <li><p>С 7:30 до 13:00 или с 12:30 до 18:00 – <Span className="highlight">неполный
+                            <li><p>С 7:30 до 13:30 или с 13:00 до 19:00 – <Span className="highlight">неполный
                                 день</Span></p></li>
-                            <li><p>С 7:30 до 18:00 – <Span className="highlight">полный день</Span></p></li>
+                            <li><p>С 7:30 до 19:00 – <Span className="highlight">полный день</Span></p></li>
                         </ul>
                     </motion.article>
                 </Div>

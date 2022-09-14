@@ -31,7 +31,7 @@ export const Rems = {
 };
 
 export const ContactData = {
-    phoneNumber: "+7 (910) 170-23-53",
+    phoneNumber: "+7 (492) 246-06-06",
     vkLink: "",
     email: "panda-kids33@yandex.ru",
     address: {
