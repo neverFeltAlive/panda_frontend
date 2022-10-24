@@ -83,6 +83,9 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
             try{
                 fetch(apiEndpoint, {
                     method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                     mode: "cors",
                     body: JSON.stringify({...values})
                 }).then(response => console.log(response.json()));
