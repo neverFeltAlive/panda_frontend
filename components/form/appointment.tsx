@@ -21,7 +21,6 @@ const items: InputProps[] = [
         className: "input",
         type: "email",
         title: "Введите ваш e-mail",
-        pattern: "^\S+@\S+\.\S+$",
         placeholder: "example@gmail.com",
         required: true,
     },
