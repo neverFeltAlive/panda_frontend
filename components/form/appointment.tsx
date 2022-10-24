@@ -59,7 +59,7 @@ export const AppointmentForm = ({onSubmit}: ModalFormProps): JSX.Element => {
         <section>
             <h5 className="section-title" style={{textAlign: "center"}}>записаться на экскурсию</h5>
             <Hr/>
-            <Form apiEndpoint={`${ApiRoot}/create-application`} items={items} buttonText="Отправить" onSubmit={onSubmit}/>
+            <Form apiEndpoint={`${ApiRoot}/create-question`} items={items} buttonText="Отправить" onSubmit={onSubmit}/>
         </section>
     )
 }
@@ -78,7 +78,7 @@ const Appointment : FC = () => {
                 <Hr/>
 
                 <Container>
-                    <Form apiEndpoint={`${ApiRoot}/create-question`} items={items} buttonText="Отправить" onSubmit={() => {}}/>
+                    <Form apiEndpoint={`${ApiRoot}/create-question`} items={items} buttonText="Отправить"/>
                 </Container>
             </motion.div>
         </section>

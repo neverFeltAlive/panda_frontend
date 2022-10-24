@@ -47,7 +47,7 @@ interface FormProps {
     items: (InputProps | SelectProps)[],
     buttonText: string,
     apiEndpoint: string,
-    onSubmit: () => void,
+    onSubmit?: () => void,
 }
 
 type State = { [key: string]: string };
@@ -64,7 +64,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
     const [values, setValues] = useState(defaultValues);
     const [errors, setErrors] = useState<null | { [key: string]: string | null }>(null)
 
-    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         let checkValues = true;
@@ -83,10 +83,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
             try{
                 fetch(apiEndpoint, {
                     method: "POST",
-                    headers: {
-                        "Access-Control-Allow-Origin": "localhost",
-                        "Content-Type": "application/json",
-                    },
+                    mode: "cors",
                     body: JSON.stringify({...values})
                 }).then(response => console.log(response.json()));
             }
@@ -94,12 +91,12 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
                 console.log(error);
             }
 
-            onSubmit();
+            if (onSubmit) onSubmit();
         }
     }
 
     return (
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
             <InputContainer>
                 <>
                     {items.map((item, index) => {
@@ -249,7 +246,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
                 </label>
                 <br/>
                 <Hr/>
-                <button className="button" onClick={handleSubmit}>{buttonText}</button>
+                <button type="submit" className="button">{buttonText}</button>
             </InputContainer>
         </StyledForm>
     );

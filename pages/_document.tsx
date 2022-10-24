@@ -25,6 +25,36 @@ class MyDocument extends Document {
                         rel="stylesheet"/>
                     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&display=swap"
                           rel="stylesheet"/>
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                                    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+                                    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+                          
+                                    ym(12345678, "init", {
+                                          clickmap:true,
+                                          trackLinks:true,
+                                          accurateTrackBounce:true
+                                    });
+                                  `,
+                        }}
+                    />
+                    <noscript>
+                        <div>
+                            <img src="https://mc.yandex.ru/watch/90714198" style={{ position:'absolute', left:'-9999px' }} alt="" />
+                        </div>
+                    </noscript>
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                    !function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src='https://vk.com/js/api/openapi.js?169',t.onload=function(){VK.Retargeting.Init("VK-RTRG-1560701-9ImCM"),VK.Retargeting.Hit()},document.head.appendChild(t)}();
+                                  `,
+                        }}
+                    />
+                    <noscript>
+                        <img src="https://vk.com/rtrg?p=VK-RTRG-1560701-9ImCM" style={{ position:'fixed', left:'-999px' }} alt=""/>
+                    </noscript>
                 </Head>
 
                 <body>

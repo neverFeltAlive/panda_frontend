@@ -94,7 +94,7 @@ const MapBox = () => {
                         {...DefaultAnimationProps(0.3)}
                     >
                         <p><strong style={{fontWeight: "inherit"}}>Садик Панда</strong> расположен в центре города <Strong>недалеко от здания областной
-                            админимтрации</Strong>.
+                            администрации</Strong>.
                         </p>
                     </Article>
                     <Article
