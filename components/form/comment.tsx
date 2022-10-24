@@ -16,7 +16,7 @@ const items: InputProps[] = [
         required: true,
     },
     {
-        name: "message",
+        name: "сomment",
         label: "Ваш комментарий",
         className: "input",
         type: "textarea",
