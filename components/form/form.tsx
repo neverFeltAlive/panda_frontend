@@ -111,6 +111,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
 
                         if ("options" in item) {
                             const {label, options, onChange, ...selectProps} = item as SelectProps;
+                            values[item.name] = options[0].value;
 
                             const selectOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
                                 event.preventDefault();
