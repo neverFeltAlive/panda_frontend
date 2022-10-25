@@ -122,7 +122,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
                             return (
                                     <Label key={index}>
                                         {label}:<br/>
-                                        <select {...selectProps} onChange={selectOnChange}>
+                                        <select {...selectProps} onChange={selectOnChange} value={values[item.name]}>
                                             {options.map((option, index) => {
                                                 const {value, name, ...optionProps} = option;
                                                 return (
