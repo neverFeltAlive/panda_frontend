@@ -70,19 +70,21 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
         let checkValues = true;
         let checkErrors = true;
 
+        console.log("Submitting form");
+
+        console.log(values);
+        console.log(errors);
+
         for (let i = 0; i < items.length; i++){
             if (values[items[i].name] === "" || values[items[i].name] === undefined || values[items[i].name] === null){
                 checkValues = false;
-                console.log(values);
             }
             if (errors && errors[items[i].name] !== null){
                 checkErrors = false;
-                console.log(errors);
             }
         }
 
         if (checkErrors && checkValues){
-            console.log("Submitting form");
             try{
                 fetch(apiEndpoint, {
                     method: "POST",
