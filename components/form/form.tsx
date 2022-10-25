@@ -86,6 +86,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
 
         if (checkErrors && checkValues){
             console.log("No errors. Sending data.");
+            console.log(JSON.stringify(values));
             try{
                 fetch(apiEndpoint, {
                     method: "POST",
@@ -93,7 +94,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({...values})
+                    body: JSON.stringify(values)
                 }).then(response => console.log(response.json()));
 
                 if (onSubmit) onSubmit();
