@@ -85,6 +85,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
         }
 
         if (checkErrors && checkValues){
+            console.log("No errors. Sending data.");
             try{
                 fetch(apiEndpoint, {
                     method: "POST",
@@ -94,12 +95,12 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
                     },
                     body: JSON.stringify({...values})
                 }).then(response => console.log(response.json()));
+
+                if (onSubmit) onSubmit();
             }
             catch(error){
                 console.log(error);
             }
-
-            if (onSubmit) onSubmit();
         }
     }
 
@@ -197,14 +198,6 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
 
                                         if (event.target.name.length <= 50) {
                                             errorMessage = null;
-
-                                            /*
-                                            if (event.target.name.match(regExp)){
-                                            }
-                                            else{
-                                                errorMessage = "Email некорректный";
-                                            }
-                                            */
                                         } else {
                                             errorMessage = "Email превышает допустимую длинну";
                                         }
@@ -223,7 +216,7 @@ const Form: FC<FormProps> = ({apiEndpoint, items, buttonText, onSubmit}): JSX.El
                                         }
                                     }
                                 }
-                                setErrors({...errors, [event.target.name]: errorMessage});
+                                if (errors) setErrors({...errors, [event.target.name]: errorMessage});
                                 //endregion
 
                                 if (onBlur !== undefined) {
